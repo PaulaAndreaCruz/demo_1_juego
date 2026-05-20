@@ -261,6 +261,10 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
     <div class="hud-val" id="h-score">0</div>
   </div>
   <button class="btn" style="padding:8px 16px;font-size:12px;" onclick="togglePause()">⏸ ESC</button>
+  <button id="btn-attack" onclick="triggerAttack()"
+    style="padding:10px 20px;font-size:13px;font-weight:900;background:#e94560;border-color:#e94560;color:#fff;display:none;">
+    ⚡ ATACAR
+  </button>
 </div>
  
 <!-- BOSS BAR -->
@@ -396,6 +400,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 <!-- ══════ JS ENGINE ══════ -->
 <script>
 'use strict';
+document.addEventListener('DOMContentLoaded', function() {
 // ─────────────────────────────────────────────
 // WORLD / LEVEL DATA
 // ─────────────────────────────────────────────
@@ -632,6 +637,10 @@ window.addEventListener('keydown', e => {
 });
 window.addEventListener('keyup', e => { keys[e.key.toLowerCase()] = false; });
  
+// Mouse / touch attack
+document.getElementById('gc').addEventListener('click', () => { keys['x'] = true; setTimeout(() => { keys['x'] = false; }, 80); });
+document.getElementById('gc').addEventListener('touchstart', (e) => { e.preventDefault(); keys['x'] = true; setTimeout(() => { keys['x'] = false; }, 80); }, {passive:false});
+ 
 // ─────────────────────────────────────────────
 // PLAYER OBJECT
 // ─────────────────────────────────────────────
@@ -639,7 +648,8 @@ const P = {
   x:120, y:0, w:32, h:48,
   vx:0, vy:0,
   onGround:false, facing:1,
-  invul:0, attacking:0
+  invul:0, attacking:0,
+  attackCooldown:0
 };
 const GR = 0.55, JUMP = -13.5, SPEED = 5.5;
  
@@ -1571,18 +1581,24 @@ function gameStep(ts) {
     P.vy = jf; P.onGround = false;
   }
  
-  // Attack
-  if ((keys['x'] || keys['z']) && P.attackCooldown <= 0 && G.attackEnabled) {
-    P.attackCooldown = G.superpower ? 10 : 18;
-    const color = G.superpower ? '#f0c070' : '#00d4ff';
-    spawnProjectile(P.x + (P.facing > 0 ? P.w : 0), P.y + P.h * 0.4,
-      P.facing * (G.superpower ? 12 : 9), 0, 'player', color);
-    if (G.superpower) {
-      // Extra side shots
-      spawnProjectile(P.x + P.w/2, P.y + P.h * 0.4,
-        P.facing * 10, -2, 'player', '#e94560');
-      spawnProjectile(P.x + P.w/2, P.y + P.h * 0.4,
-        P.facing * 10, 2, 'player', '#e94560');
+  // Attack — teclas: X, Z, Y, F, Espacio+dirección o clic
+  const attackKey = keys['x'] || keys['z'] || keys['y'] || keys['f'];
+  if (attackKey && P.attackCooldown <= 0) {
+    if (!G.attackEnabled) {
+      // Locked — show message but allow key detection
+      notify('🔒 Resuelve al menos 1 reto para atacar', '#e94560');
+      P.attackCooldown = 60; // prevent spam
+    } else {
+      P.attackCooldown = G.superpower ? 8 : 16;
+      const color = G.superpower ? '#f0c070' : '#00d4ff';
+      const speed = G.superpower ? 13 : 9;
+      const px = P.facing > 0 ? P.x + P.w + 4 : P.x - 4;
+      const py = P.y + P.h * 0.35;
+      spawnProjectile(px, py, P.facing * speed, 0, 'player', color);
+      if (G.superpower) {
+        spawnProjectile(px, py, P.facing * speed, -2.5, 'player', '#e94560');
+        spawnProjectile(px, py, P.facing * speed, 2.5, 'player', '#e94560');
+      }
     }
   }
   if (P.attackCooldown > 0) P.attackCooldown--;
@@ -2263,12 +2279,36 @@ function updateHUD() {
   const pct = Math.min(100, (G.time / 600) * 100);
   document.getElementById('h-tfill').style.width = pct + '%';
   document.getElementById('h-tfill').style.background = '#4ecca3';
+  // Attack button
+  const btnAtk = document.getElementById('btn-attack');
+  if (G.attackEnabled) {
+    btnAtk.style.display = 'inline-block';
+    if (G.superpower) {
+      btnAtk.textContent = '⚡ SUPERPODER (X)';
+      btnAtk.style.background = '#f0c070';
+      btnAtk.style.borderColor = '#f0c070';
+      btnAtk.style.color = '#000';
+    } else {
+      btnAtk.textContent = '⚔️ ATACAR (X/Z)';
+      btnAtk.style.background = '#e94560';
+      btnAtk.style.borderColor = '#e94560';
+      btnAtk.style.color = '#fff';
+    }
+  } else {
+    btnAtk.style.display = 'none';
+  }
 }
  
 // ─────────────────────────────────────────────
 // NOTIFICATIONS
 // ─────────────────────────────────────────────
 let notifTimer = null;
+// Manual attack trigger (button / touch)
+function triggerAttack() {
+  keys['x'] = true;
+  setTimeout(() => { keys['x'] = false; }, 100);
+}
+ 
 function notify(msg, color = '#4ecca3') {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -2329,11 +2369,11 @@ function enterWorld() {
 // ─────────────────────────────────────────────
 // PREVIEWS ON LOAD
 // ─────────────────────────────────────────────
-window.addEventListener('load', () => {
-  drawPreview('kangaroo', 'kangaroo');
+drawPreview('kangaroo', 'kangaroo');
   drawPreview('girl', 'girl');
   drawPreview('boy', 'boy');
-});
+ 
+}); // end DOMContentLoaded
 </script>
 </body>
 </html>
