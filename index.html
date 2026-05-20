@@ -607,7 +607,7 @@ const G = {
   world:0, score:0, lives:3,
   time:0, running:false, paused:false,
   challengesDone:0, worldKills:0,
-  attackEnabled:false, bossHP:100,
+  attackEnabled:false, bossHP:100, superpower:false,
   challengesPassed:0
 };
  
@@ -1573,9 +1573,17 @@ function gameStep(ts) {
  
   // Attack
   if ((keys['x'] || keys['z']) && P.attackCooldown <= 0 && G.attackEnabled) {
-    P.attackCooldown = 18;
+    P.attackCooldown = G.superpower ? 10 : 18;
+    const color = G.superpower ? '#f0c070' : '#00d4ff';
     spawnProjectile(P.x + (P.facing > 0 ? P.w : 0), P.y + P.h * 0.4,
-      P.facing * 9, 0, 'player', '#00d4ff');
+      P.facing * (G.superpower ? 12 : 9), 0, 'player', color);
+    if (G.superpower) {
+      // Extra side shots
+      spawnProjectile(P.x + P.w/2, P.y + P.h * 0.4,
+        P.facing * 10, -2, 'player', '#e94560');
+      spawnProjectile(P.x + P.w/2, P.y + P.h * 0.4,
+        P.facing * 10, 2, 'player', '#e94560');
+    }
   }
   if (P.attackCooldown > 0) P.attackCooldown--;
  
@@ -1654,6 +1662,36 @@ function drawParticles() {
  
 function drawPlayerSprite() {
   if (P.invul > 0 && Math.floor(P.invul / 4) % 2 === 0) return;
+  // Superpower aura
+  if (G.superpower) {
+    const t = Date.now() / 200;
+    const radius = 30 + Math.sin(t) * 6;
+    gx.save();
+    gx.globalAlpha = 0.35 + Math.sin(t) * 0.15;
+    gx.fillStyle = '#f0c070';
+    gx.beginPath();
+    gx.arc(P.x + P.w/2, P.y + P.h/2, radius, 0, Math.PI*2);
+    gx.fill();
+    gx.globalAlpha = 1;
+    gx.restore();
+  }
+  // Challenge-open shield (invul visual)
+  if (challengeOpen) {
+    gx.save();
+    gx.globalAlpha = 0.25;
+    gx.fillStyle = '#00d4ff';
+    gx.beginPath();
+    gx.arc(P.x + P.w/2, P.y + P.h/2, 34, 0, Math.PI*2);
+    gx.fill();
+    gx.globalAlpha = 0.7;
+    gx.strokeStyle = '#00d4ff';
+    gx.lineWidth = 2;
+    gx.beginPath();
+    gx.arc(P.x + P.w/2, P.y + P.h/2, 34, 0, Math.PI*2);
+    gx.stroke();
+    gx.globalAlpha = 1;
+    gx.restore();
+  }
   drawChar(gx, P.x + P.w/2, P.y + P.h, G.char, P.facing, P.onGround);
 }
  
@@ -1696,8 +1734,8 @@ function updateEnemies(dt) {
         e.projectileCooldown = 70 - G.world * 8;
       }
     }
-    // Player–enemy collision (body touch)
-    if (P.invul <= 0) {
+    // Player–enemy collision (body touch) — nunca daña si hay reto abierto
+    if (P.invul <= 0 && !challengeOpen) {
       const dx = Math.abs(P.x + P.w/2 - e.x);
       const dy = Math.abs(P.y + P.h/2 - e.y);
       if (dx < (P.w/2 + e.w/2) && dy < (P.h/2 + e.h/2)) {
@@ -1723,7 +1761,7 @@ function updateProjectiles() {
       projectiles.splice(i, 1); continue;
     }
     // Player hit
-    if (proj.owner === 'enemy' && P.invul <= 0) {
+    if (proj.owner === 'enemy' && P.invul <= 0 && !challengeOpen) {
       const dx = Math.abs(proj.x - (P.x + P.w/2));
       const dy = Math.abs(proj.y - (P.y + P.h/2));
       if (dx < 20 && dy < 22) { takeDamage(); spawnParticles(proj.x,proj.y,'#e94560',6); projectiles.splice(i,1); continue; }
@@ -1734,14 +1772,17 @@ function updateProjectiles() {
         if (!e.alive) continue;
         const dx = Math.abs(proj.x - e.x); const dy = Math.abs(proj.y - e.y);
         if (dx < e.w && dy < e.h) {
-          e.hp--;
-          spawnParticles(e.x, e.y, '#f0c070', 8);
+          const dmg = G.superpower ? 2 : 1;
+          e.hp -= dmg;
+          const pColor = G.superpower ? '#f0c070' : '#00d4ff';
+          spawnParticles(e.x, e.y, pColor, G.superpower ? 14 : 8);
           if (e.hp <= 0) {
             e.alive = false;
-            G.score += 150 + G.world * 50;
+            const pts = 150 + G.world * 50;
+            G.score += pts;
             G.worldKills++;
-            notify(`+${150 + G.world * 50} pts ¡Enemigo eliminado!`, '#4ecca3');
-            spawnParticles(e.x, e.y, '#e94560', 16);
+            notify(`+${pts} pts ¡Enemigo eliminado!`, '#4ecca3');
+            spawnParticles(e.x, e.y, '#e94560', 20);
             if (bossRef && !bossRef.alive) {
               G.bossHP = 0;
               updateBossBar();
@@ -1788,7 +1829,9 @@ function updateBossBar() {
  
 function checkWorldClear() {
   const alive = enemies.filter(e => e.alive).length;
-  if (alive === 0 && G.challengesDone >= WORLDS[G.world].challengeCount) {
+  const challengesDone = G.challengesDone >= WORLDS[G.world].challengeCount;
+  const noEnemiesNeeded = WORLDS[G.world].enemies === 0;
+  if (challengesDone && (alive === 0 || noEnemiesNeeded)) {
     setTimeout(worldComplete, 800);
   }
 }
@@ -2028,11 +2071,44 @@ function solveChallenge(reward) {
   // Unlock attack when at least 1 challenge done
   G.attackEnabled = G.challengesDone >= 1;
   notify(`🎉 Reto ${G.challengesDone}/${WORLDS[G.world].challengeCount} completado! +${reward} pts`, '#4ecca3');
-  // All challenges done in this world?
+  // All challenges done — SUPERPOWER UNLOCKED
   if (G.challengesDone >= WORLDS[G.world].challengeCount) {
-    notify('💥 ¡Todos los retos resueltos! Derrota a los enemigos para avanzar.', '#f0c070');
-    if (enemies.filter(e => e.alive).length === 0) setTimeout(worldComplete, 800);
+    G.superpower = true;
+    // Giant particle explosion
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        spawnParticles(P.x + P.w/2, P.y + P.h/2, '#f0c070', 20);
+        spawnParticles(P.x + P.w/2, P.y + P.h/2, '#00d4ff', 20);
+        spawnParticles(P.x + P.w/2, P.y + P.h/2, '#4ecca3', 15);
+      }, i * 150);
+    }
+    // Full heal
+    G.lives = 3;
+    // Show power-up banner
+    showPowerBanner();
+    notify('⚡ ¡SUPERPODER ACTIVADO! Ataque máximo + Vidas restauradas', '#f0c070');
+    if (enemies.filter(e => e.alive).length === 0) setTimeout(worldComplete, 1200);
   }
+}
+ 
+function showPowerBanner() {
+  // Create a temporary DOM banner
+  const banner = document.createElement('div');
+  banner.id = 'power-banner';
+  banner.style.cssText = `
+    position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
+    background:linear-gradient(135deg,#f0c070,#e94560);
+    color:#000; padding:24px 48px; border-radius:16px;
+    font-size:clamp(20px,3vw,36px); font-weight:900; letter-spacing:3px;
+    text-align:center; z-index:300; pointer-events:none;
+    box-shadow:0 0 60px rgba(240,192,112,.8);
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  `;
+  banner.innerHTML = '⚡ ¡SUPERPODER!<br><span style="font-size:.5em;letter-spacing:2px;">¡TODOS LOS RETOS RESUELTOS!</span>';
+  document.body.appendChild(banner);
+  setTimeout(() => { banner.style.transform = 'translate(-50%,-50%) scale(1)'; }, 50);
+  setTimeout(() => { banner.style.transform = 'translate(-50%,-50%) scale(0)'; }, 2200);
+  setTimeout(() => { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 2700);
 }
  
 function closeCh() {
@@ -2067,6 +2143,7 @@ function nextWorldBtn() {
   G.challengesDone = 0;
   G.worldKills = 0;
   G.attackEnabled = false;
+  G.superpower = false;
   G.time = 0;
   G.bossHP = 100;
   document.getElementById('boss-bar-wrap').classList.remove('on');
@@ -2092,7 +2169,7 @@ function triggerGameOver(msg) {
 function retryWorld() {
   hide('s-over');
   G.lives = 3; G.time = 0;
-  G.challengesDone = 0; G.attackEnabled = false; G.worldKills = 0;
+  G.challengesDone = 0; G.attackEnabled = false; G.superpower = false; G.worldKills = 0;
   G.bossHP = 100;
   buildPlatforms(G.world);
   buildChallengeBlocks(G.world);
