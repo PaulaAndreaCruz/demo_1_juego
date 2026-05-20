@@ -22,10 +22,10 @@
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',system-ui,sans-serif; background:var(--dark); color:var(--text); }
- 
+
 /* ──────── CANVAS ──────── */
 #gc { display:block; position:fixed; inset:0; width:100%; height:100%; }
- 
+
 /* ──────── GLOBAL OVERLAY ──────── */
 .overlay {
   position:fixed; inset:0; z-index:10;
@@ -46,7 +46,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 .panel h2 { font-size:clamp(20px,3vw,32px); color:var(--cyan); margin-bottom:12px; }
 .panel p { color:var(--muted); font-size:15px; line-height:1.7; margin:10px 0; }
 .panel .sub { font-size:12px; letter-spacing:3px; color:var(--cyan); margin-bottom:4px; }
- 
+
 /* ──────── BUTTONS ──────── */
 .btn {
   display:inline-block; padding:13px 32px; margin:8px 6px;
@@ -60,7 +60,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 .btn.gold:hover { background:var(--gold); color:var(--dark); box-shadow:0 8px 24px rgba(240,192,112,.3); }
 .btn.danger { border-color:var(--danger); color:var(--danger); }
 .btn.full { width:100%; margin:6px 0; }
- 
+
 /* ──────── CHARACTER SELECT ──────── */
 .char-row { display:flex; gap:20px; justify-content:center; margin:20px 0; flex-wrap:wrap; }
 .char-card {
@@ -73,7 +73,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 .char-card canvas { display:block; margin:0 auto 10px; }
 .char-card .cname { font-size:13px; font-weight:700; letter-spacing:2px; color:var(--gold); }
 .char-card .cdesc { font-size:11px; color:var(--muted); margin-top:4px; }
- 
+
 /* ──────── NAME INPUT ──────── */
 .name-wrap { margin:18px 0; }
 .name-wrap label { display:block; font-size:11px; letter-spacing:3px; color:var(--cyan); margin-bottom:8px; }
@@ -83,7 +83,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   color:var(--text); font-size:15px; text-align:center; outline:none;
 }
 .name-wrap input:focus { border-color:var(--cyan); box-shadow:0 0 20px rgba(0,212,255,.2); }
- 
+
 /* ──────── HUD ──────── */
 #hud {
   position:fixed; top:0; left:0; right:0; height:58px;
@@ -101,7 +101,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 .lives-icons { font-size:18px; }
 .timer-bar { width:160px; height:6px; background:rgba(255,255,255,.1); border-radius:3px; margin:4px auto 0; overflow:hidden; }
 .timer-fill { height:100%; background:var(--green); transition:width .5s linear; border-radius:3px; }
- 
+
 /* ──────── CHALLENGE PANEL ──────── */
 #challenge {
   position:fixed; bottom:0; left:0; right:0; z-index:9;
@@ -111,14 +111,14 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   padding:20px 24px 24px; max-height:50vh; overflow-y:auto;
 }
 #challenge.open { transform:translateY(0); }
- 
+
 .ch-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
 .ch-title { font-size:16px; font-weight:700; color:var(--gold); }
 .ch-close { background:none; border:none; color:var(--muted); font-size:22px; cursor:pointer; line-height:1; }
- 
+
 .ch-body { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 @media(max-width:640px){ .ch-body { grid-template-columns:1fr; } }
- 
+
 .ch-question {
   background:rgba(0,212,255,.06); border:1px solid rgba(0,212,255,.25);
   border-radius:10px; padding:16px;
@@ -131,7 +131,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   font-family:'Courier New',monospace; margin:8px 0;
   white-space:pre; overflow-x:auto;
 }
- 
+
 /* Multiple choice */
 .options { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
 .opt-btn {
@@ -143,7 +143,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 .opt-btn:hover { border-color:var(--cyan); background:rgba(0,212,255,.1); }
 .opt-btn.correct { border-color:var(--green)!important; background:rgba(78,204,163,.2)!important; color:var(--green); }
 .opt-btn.wrong { border-color:var(--danger)!important; background:rgba(225,112,85,.15)!important; color:var(--danger); }
- 
+
 /* Code input */
 .code-input-wrap { margin-top:10px; position:relative; }
 .code-input {
@@ -168,7 +168,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 }
 .code-output.ok { color:var(--green); border-color:var(--green); }
 .code-output.err { color:var(--danger); border-color:var(--danger); }
- 
+
 /* Visual drag puzzle */
 .blocks-area { display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; }
 .block-chip {
@@ -186,7 +186,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   transition:border-color .2s;
 }
 .drop-zone.over { border-color:var(--cyan); background:rgba(0,212,255,.06); }
- 
+
 /* Toast */
 #toast {
   position:fixed; bottom:30px; left:50%;
@@ -201,7 +201,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 #toast.show { transform:translateX(-50%) translateY(0); }
 #toast.bad { background:var(--danger); }
 #toast.gold { background:var(--gold); }
- 
+
 /* ──────── WORLD INTRO ──────── */
 .world-badge {
   display:inline-block; padding:6px 18px; border-radius:20px;
@@ -213,7 +213,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   border-radius:4px; padding:14px 16px; margin:16px 0;
   text-align:left; font-size:13px; color:var(--text); line-height:1.6;
 }
- 
+
 /* ──────── LEADERBOARD ──────── */
 .lb-table { width:100%; border-collapse:collapse; margin:16px 0; }
 .lb-table th { padding:8px 12px; text-align:left; color:var(--cyan); font-size:11px; letter-spacing:2px; border-bottom:1px solid rgba(0,212,255,.2); }
@@ -221,7 +221,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 .lb-table tr:nth-child(1) td { color:var(--gold); font-weight:700; }
 .lb-table tr:nth-child(2) td { color:#c0c0c0; }
 .lb-table tr:nth-child(3) td { color:#cd7f32; }
- 
+
 /* BOSS HEALTH */
 #boss-bar-wrap {
   position:fixed; top:58px; left:50%; transform:translateX(-50%);
@@ -234,9 +234,9 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
 </style>
 </head>
 <body>
- 
+
 <canvas id="gc"></canvas>
- 
+
 <!-- HUD -->
 <div id="hud">
   <div class="hud-block">
@@ -260,19 +260,19 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
     <div class="hud-lbl">PUNTAJE</div>
     <div class="hud-val" id="h-score">0</div>
   </div>
-  <button class="btn" style="padding:8px 16px;font-size:12px;" onclick="togglePause()">⏸ ESC</button>
+  <button id="btn-pause" class="btn" style="padding:8px 16px;font-size:12px;">⏸ ESC</button>
   <button id="btn-attack" onclick="triggerAttack()"
     style="padding:10px 20px;font-size:13px;font-weight:900;background:#e94560;border-color:#e94560;color:#fff;display:none;">
     ⚡ ATACAR
   </button>
 </div>
- 
+
 <!-- BOSS BAR -->
 <div id="boss-bar-wrap">
   <div class="boss-lbl">DR. NEO — JEFE FINAL</div>
   <div class="boss-bar"><div class="boss-fill" id="boss-fill" style="width:100%"></div></div>
 </div>
- 
+
 <!-- CHALLENGE DRAWER -->
 <div id="challenge">
   <div class="ch-header">
@@ -281,12 +281,12 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   </div>
   <div class="ch-body" id="ch-body"></div>
 </div>
- 
+
 <!-- TOAST -->
 <div id="toast"></div>
- 
+
 <!-- ══════════════ SCREENS ══════════════ -->
- 
+
 <!-- MENU PRINCIPAL -->
 <div class="overlay" id="s-menu">
 <div class="panel">
@@ -294,7 +294,7 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   <h1>LA FONTANA<br>PERDIDA</h1>
   <p>El malvado <strong style="color:var(--accent)">Dr. Neo</strong> ha corrompido los 6 mundos del campus y encerrado el espíritu de la Fontana. Debes resolver acertijos de lógica y escribir código para avanzar, derrotar enemigos y recuperar cada pieza.</p>
   <p style="font-size:13px;color:var(--cyan);">🧠 Lógica + 💻 Código + ⚔️ Acción = Victoria</p>
- 
+
   <div class="sub" style="margin-top:20px;">ELIGE TU GUARDIÁN</div>
   <div class="char-row" id="char-row">
     <div class="char-card sel" onclick="pickChar('kangaroo',this)">
@@ -313,16 +313,16 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
       <div class="cdesc">Ataque fuerte · Estratega</div>
     </div>
   </div>
- 
+
   <div class="name-wrap">
     <label for="pname">TU NOMBRE DE HÉROE</label>
     <input id="pname" type="text" maxlength="18" placeholder="Escribe tu nombre..." autocomplete="off">
   </div>
-  <button class="btn gold full" onclick="menuStart()" style="font-size:16px;padding:16px;">▶ COMENZAR AVENTURA</button>
-  <button class="btn full" onclick="showLB()">🏆 RANKING GLOBAL</button>
+  <button id="btn-start-game" class="btn gold full" style="font-size:16px;padding:16px;">▶ COMENZAR AVENTURA</button>
+  <button id="btn-show-lb" class="btn full">🏆 RANKING GLOBAL</button>
 </div>
 </div>
- 
+
 <!-- WORLD INTRO -->
 <div class="overlay hide" id="s-intro">
 <div class="panel">
@@ -331,41 +331,41 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   <p id="wi-desc">—</p>
   <div class="challenge-preview" id="wi-preview"></div>
   <p style="font-size:12px;color:var(--muted);">💡 Consejo: Resuelve los retos para desbloquear el poder de atacar a los enemigos. Sin resolver, ¡tus ataques no funcionan!</p>
-  <button class="btn gold full" onclick="enterWorld()" style="margin-top:10px;font-size:15px;padding:15px;">⚔️ ENTRAR AL MUNDO</button>
+  <button id="btn-enter-world" class="btn gold full" style="margin-top:10px;font-size:15px;padding:15px;">⚔️ ENTRAR AL MUNDO</button>
 </div>
 </div>
- 
+
 <!-- PAUSA -->
 <div class="overlay hide" id="s-pause">
 <div class="panel">
   <h2 style="color:var(--gold);">⏸ PAUSA</h2>
   <p>El tiempo no corre mientras esperas. Respira y continúa.</p>
-  <button class="btn gold" onclick="resumeGame()">▶ CONTINUAR</button>
+  <button id="btn-resume" class="btn gold">▶ CONTINUAR</button>
   <button class="btn danger" onclick="location.reload()">⏹ SALIR AL MENÚ</button>
 </div>
 </div>
- 
+
 <!-- GAME OVER -->
 <div class="overlay hide" id="s-over">
 <div class="panel">
   <h2 style="color:var(--danger);">💀 DERROTADO</h2>
   <p id="go-msg">El Dr. Neo fue demasiado fuerte.</p>
   <p style="font-size:28px;color:var(--gold);margin:16px 0;">Puntaje: <span id="go-score">0</span></p>
-  <button class="btn gold" onclick="retryWorld()">↻ REINTENTAR MUNDO</button>
+  <button id="btn-retry" class="btn gold">↻ REINTENTAR MUNDO</button>
   <button class="btn" onclick="location.reload()">← MENÚ</button>
 </div>
 </div>
- 
+
 <!-- VICTORIA MUNDO -->
 <div class="overlay hide" id="s-wincomplete">
 <div class="panel">
   <h2 style="color:var(--green);" id="wc-title">¡MUNDO COMPLETADO!</h2>
   <p id="wc-msg">—</p>
   <p style="font-size:22px;color:var(--gold);margin:14px 0;">+<span id="wc-bonus">0</span> puntos</p>
-  <button class="btn gold" onclick="nextWorldBtn()">▶ SIGUIENTE MUNDO</button>
+  <button id="btn-next-world" class="btn gold">▶ SIGUIENTE MUNDO</button>
 </div>
 </div>
- 
+
 <!-- VICTORIA FINAL -->
 <div class="overlay hide" id="s-victory">
 <div class="panel">
@@ -378,44 +378,48 @@ html, body { width:100%; height:100%; overflow:hidden; font-family:'Segoe UI',sy
   <button class="btn" onclick="showLB()">🏆 VER RANKING</button>
 </div>
 </div>
- 
+
 <!-- LEADERBOARD -->
 <div class="overlay hide" id="s-lb">
 <div class="panel" style="max-width:560px;">
   <h2>🏆 RANKING GLOBAL</h2>
   <div id="lb-body"><p style="color:var(--muted);">Cargando...</p></div>
-  <button class="btn" onclick="hideLB()">← VOLVER</button>
+  <button id="btn-close-lb" class="btn">← VOLVER</button>
 </div>
 </div>
- 
+
 <!-- QUIZ MODAL (for level 5) -->
 <div class="overlay hide" id="s-quiz">
 <div class="panel" style="max-width:580px;">
-  <div class="sub" id="qz-prof">PROF. TECH</div>
-  <h2 id="qz-q" style="font-size:20px;margin-bottom:20px;"></h2>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+    <div class="sub" id="qz-prof" style="margin-bottom:0;">PROF. TECH</div>
+    <button onclick="closeQuizModal()" style="background:none;border:1px solid #555;color:#888;padding:4px 10px;font-size:12px;border-radius:4px;cursor:pointer;">✕ Cerrar</button>
+  </div>
+  <h2 id="qz-q" style="font-size:18px;margin-bottom:20px;line-height:1.4;color:var(--cyan);"></h2>
   <div class="options" id="qz-opts"></div>
+  <p style="font-size:11px;color:var(--muted);margin-top:14px;">⚠️ Respuesta incorrecta = -1 vida. Puedes cerrar y volver después.</p>
 </div>
 </div>
- 
+
 <!-- ══════ JS ENGINE ══════ -->
 <script>
 'use strict';
-document.addEventListener('DOMContentLoaded', function() {
+// Game initialized — functions are global for onclick handlers
 // ─────────────────────────────────────────────
 // WORLD / LEVEL DATA
 // ─────────────────────────────────────────────
 const WORLDS = [
   {
-    id:0, name:'🌴 La Selva Corrupta', color:'#4ecca3',
+    id:0, name:'🌴 La Selva Encantada', color:'#4ecca3',
     badge:'MUNDO 1 — INICIO',
-    desc:'Los árboles del campus han sido corrompidos por virus digitales. Los guardianes corruptos bloquean el paso. Resuelve los acertijos de secuencias para desbloquear tus poderes y derrotarlos.',
+    desc:'Los árboles mágicos del campus han sido hechizados por el Dr. Neo. Los guardianes del bosque bloquean el paso. Resuelve los acertijos de secuencias para desbloquear tus poderes y derrotarlos.',
     preview:'3 retos de SECUENCIAS Y PATRONES · Enemigos: Guardianes del Bosque · Dificultad: ⭐',
     bg:'jungle', enemies:4, challengeCount:3
   },
   {
     id:1, name:'🔬 Laboratorio Infectado', color:'#00d4ff',
     badge:'MUNDO 2 — LABORATORIO',
-    desc:'El lab de ciencias está lleno de virus y código corruptado. Para limpiar cada zona necesitas escribir condiciones lógicas (if/else) correctas. Un error y el virus avanza.',
+    desc:'El laboratorio está infectado con virus digitales. Para limpiar cada zona necesitas escribir condiciones lógicas (if/else) correctas. Un error y el virus avanza.',
     preview:'3 retos de CONDICIONALES (if/else) · Enemigos: Virus Cibernéticos · Dificultad: ⭐⭐',
     bg:'lab', enemies:5, challengeCount:3
   },
@@ -442,13 +446,34 @@ const WORLDS = [
   },
   {
     id:5, name:'⚡ Torre del Dr. Neo', color:'#e94560',
-    badge:'MUNDO 6 — JEFE FINAL',
-    desc:'El enfrentamiento definitivo. El Dr. Neo tiene 30 puntos de vida. Solo reduces su HP si resuelves acertijos de DEBUGGING — encuentra y corrige el error en el código. ¡Es ahora o nunca!',
-    preview:'3 retos de DEBUGGING + BOSS FIGHT · Enemigo: Dr. Neo · Dificultad: ⭐⭐⭐⭐⭐',
-    bg:'tower', enemies:1, challengeCount:3, finalBoss:true
+    badge:'MUNDO 6 — JEFE PARCIAL',
+    desc:'El Dr. Neo te espera en su torre. Derrótalo resolviendo bugs de código. Pero cuidado — tiene más trucos bajo la manga...',
+    preview:'3 retos de DEBUGGING + BOSS · Enemigo: Dr. Neo · Dificultad: ⭐⭐⭐⭐⭐',
+    bg:'tower', enemies:1, challengeCount:3
+  },
+  {
+    id:6, name:'🎵 El Estudio de Música', color:'#ff79c6',
+    badge:'MUNDO 7 — MÚSICA Y CÓDIGO',
+    desc:'El Dr. Neo ha silenciado todos los instrumentos del colegio. Para restaurar la música debes construir con bloques de código el ritmo correcto. ¡Crea la melodía y hazla sonar!',
+    preview:'3 retos de MÚSICA + CÓDIGO · Construye ritmos con bloques · Dificultad: ⭐⭐⭐',
+    bg:'music', enemies:4, challengeCount:3
+  },
+  {
+    id:7, name:'💃 El Salón de Danzas', color:'#fd79a8',
+    badge:'MUNDO 8 — DANZA Y LÓGICA',
+    desc:'Los bailarines del colegio están atrapados en un loop infinito. Solo tú puedes librarlos resolviendo retos de secuencias de movimientos y patrones de danza.',
+    preview:'3 retos de DANZA + SECUENCIAS · Patrones de movimiento · Dificultad: ⭐⭐⭐⭐',
+    bg:'dance', enemies:5, challengeCount:3
+  },
+  {
+    id:8, name:'🌍 La Academia de Idiomas', color:'#74b9ff',
+    badge:'MUNDO 9 — JEFE FINAL',
+    desc:'¡El último mundo! El Dr. Neo esconde la pieza final en la academia de idiomas. Demuestra tu conocimiento de inglés y francés para obtener el poder máximo y derrotarlo definitivamente.',
+    preview:'3 retos de INGLÉS y FRANCÉS · Vocabulario y gramática · Dificultad: ⭐⭐⭐⭐⭐',
+    bg:'languages', enemies:1, challengeCount:3, finalBoss:true
   }
 ];
- 
+
 // ─────────────────────────────────────────────
 // CHALLENGES PER WORLD
 // ─────────────────────────────────────────────
@@ -483,16 +508,15 @@ const CHALLENGES = [
       type:'choice', title:'Reto 1 — if/else', reward:250,
       q:'Lee el código y di qué imprime:\n\nlet x = 10;\nif (x > 5) {\n  print("Grande");\n} else {\n  print("Pequeño");\n}',
       code:true,
-      opts:['"Pequeño"','"Grande"','Error','Nada'], correct:1,
+      opts:['Pequeño','Grande','Error','Nada'], correct:1,
       explain:'Como x=10 y 10 > 5 es verdadero, el if se ejecuta: imprime "Grande".'
     },
     {
       type:'drag', title:'Reto 2 — Ordena el if/else', reward:300,
-      q:'Arrastra los bloques para que el código verifique si un número es positivo:',
-      blocks:['if (num > 0) {','  resultado = "positivo";','}','resultado = "negativo o cero";','else {'],
-      correctOrder:[0,1,2,4,3],
-      orderedLabels:['if (num > 0) {','  resultado = "positivo";','}','else {','  resultado = "negativo o cero";'],
-      explain:'Un if/else: primero la condición, luego el bloque if, luego else.'
+      q:'Arrastra los bloques EN ORDEN para que el código verifique si un número es positivo:',
+      blocks:['if (num > 0) {', '  resultado = POSITIVO', '}', '  resultado = NEGATIVO', 'else {'],
+      orderedLabels:['if (num > 0) {', '  resultado = POSITIVO', '}', 'else {', '  resultado = NEGATIVO'],
+      explain:'Estructura if/else: condición → bloque if → cierre } → else { → bloque else'
     },
     {
       type:'code', title:'Reto 3 — Escribe el if', reward:350,
@@ -531,12 +555,11 @@ const CHALLENGES = [
   // WORLD 3 — Algoritmos visuales (drag)
   [
     {
-      type:'drag', title:'Reto 1 — Algoritmo: Encontrar mayor', reward:350,
-      q:'Ordena los pasos para encontrar el número mayor entre a y b:',
-      blocks:['Inicio','Comparar a y b','Si a > b: mayor = a','Si no: mayor = b','Mostrar mayor','Fin'],
-      correctOrder:[0,1,2,3,4,5],
-      orderedLabels:['Inicio','Comparar a y b','Si a > b: mayor = a','Si no: mayor = b','Mostrar mayor','Fin'],
-      explain:'Algoritmo correcto: Inicio → Comparar → Decidir → Mostrar → Fin.'
+      type:'drag', title:'Reto 1 — Algoritmo: Encontrar el mayor', reward:350,
+      q:'Ordena los pasos del algoritmo para encontrar el número mayor entre A y B:',
+      blocks:['1. INICIO', '2. Leer A y B', '3. Comparar: ¿A > B?', '4. Si SÍ → mayor = A', '5. Si NO → mayor = B', '6. Mostrar mayor'],
+      orderedLabels:['1. INICIO', '2. Leer A y B', '3. Comparar: ¿A > B?', '4. Si SÍ → mayor = A', '5. Si NO → mayor = B', '6. Mostrar mayor'],
+      explain:'Un algoritmo tiene pasos en orden: Inicio → Entrada → Proceso → Decisión → Salida'
     },
     {
       type:'choice', title:'Reto 2 — Complejidad', reward:400,
@@ -558,23 +581,23 @@ const CHALLENGES = [
     {
       type:'quiz', title:'Prof. de HTML', reward:400,
       prof:'Prof. García — HTML',
-      q:'¿Qué etiqueta HTML se usa para hacer un enlace (link) a otra página?',
-      opts:['<link>','<a href="...">','<url>','<go>'], correct:1,
-      explain:'La etiqueta <a> con atributo href crea enlaces en HTML.'
+      q:'¿Cuál es la etiqueta HTML correcta para crear un enlace a otra página web?',
+      opts:['Etiqueta LINK','Etiqueta A con href','Etiqueta URL','Etiqueta GO'], correct:1,
+      explain:'La etiqueta A con atributo href crea enlaces en HTML. Ejemplo: A href=pagina.html'
     },
     {
       type:'quiz', title:'Prof. de CSS', reward:400,
       prof:'Prof. Martínez — CSS',
       q:'¿Qué propiedad CSS cambia el color del texto?',
       opts:['text-color','font-color','color','background-color'], correct:2,
-      explain:'La propiedad CSS "color" controla el color del texto.'
+            explain:'La propiedad CSS llamada color controla el color del texto.'
     },
     {
       type:'quiz', title:'Prof. de JavaScript', reward:400,
       prof:'Prof. López — JavaScript',
-      q:'¿Qué hace el método .length en JavaScript?\nEjemplo: "hola".length',
+      q:'¿Qué hace la propiedad .length en JavaScript? Ejemplo: la palabra hola tiene .length igual a 4',
       opts:['Borra caracteres','Convierte a mayúscula','Cuenta los caracteres','Copia el texto'], correct:2,
-      explain:'.length regresa el número de caracteres. "hola".length = 4.'
+            explain:'.length cuenta los caracteres. La palabra hola tiene 4 letras, entonces devuelve 4.'
     }
   ],
   // WORLD 5 — Debugging
@@ -583,8 +606,8 @@ const CHALLENGES = [
       type:'bug', title:'Debug 1 — Encuentra el error', reward:450,
       q:'Este código debe imprimir los números del 1 al 5, pero hay un bug. ¿Cuál es el error?',
       code:'for (let i = 1; i > 5; i++) {\n  print(i);\n}',
-      opts:['i++ debe ser i--','i > 5 debe ser i <= 5','let i = 1 debe ser let i = 0','No hay error'], correct:1,
-      explain:'El bucle nunca corre porque 1 > 5 es FALSO. Debe ser i <= 5.'
+      opts:['Cambiar i++ por i--','Cambiar la condicion a i menor-igual 5','Cambiar i=1 por i=0','No hay error'], correct:1,
+      explain:'El bucle nunca corre porque la condición 1 mayor-que 5 es FALSA. La condición correcta es i menor-igual 5.'
     },
     {
       type:'bug', title:'Debug 2 — Lógica rota', reward:500,
@@ -602,8 +625,77 @@ const CHALLENGES = [
       explain:'return a + b suma correctamente los dos parámetros.'
     }
   ]
+  ,
+  // WORLD 6 — Música y Código
+  [
+    {
+      type:'choice', title:'Reto 1 — Ritmo y Compás', reward:400,
+      q:'En música, un compás de 4/4 tiene 4 tiempos. Si cada tiempo es una negra y tienes 2 compases, ¿cuántas notas en total hay?',
+      opts:['4','6','8','16'], correct:2,
+      explain:'2 compases × 4 tiempos cada uno = 8 notas en total. ¡Como un array de 8 elementos!'
+    },
+    {
+      type:'drag', title:'Reto 2 — Construye el Piano', reward:450,
+      q:'Ordena los bloques para que el código haga sonar las notas DO RE MI en secuencia:',
+      blocks:['tocar("DO")', 'for (let i=0; i<3; i++) {', 'notas[i])', '}', 'tocar('],
+      orderedLabels:['for (let i=0; i<3; i++) {', 'tocar(', 'notas[i])', '}'],
+      explain:'Un bucle for recorre el array de notas y las toca una por una: DO, RE, MI.'
+    },
+    {
+      type:'code', title:'Reto 3 — Frecuencia Musical', reward:500,
+      q:'La nota LA tiene frecuencia 440 Hz. Escribe una función que calcule la frecuencia de una nota multiplicando la base por un factor.\nEjemplo: frecuencia(440, 2) debe dar 880.',
+      starter:'function frecuencia(base, factor) {\n  return ___;\n}',
+      hint:'Multiplica base por factor',
+      regex:/base\s*\*\s*factor|factor\s*\*\s*base/,
+      explain:'return base * factor. En música, doblar la frecuencia sube una octava.'
+    }
+  ],
+  // WORLD 7 — Danza y Lógica
+  [
+    {
+      type:'choice', title:'Reto 1 — Secuencia de Pasos', reward:400,
+      q:'Una coreografía tiene este patrón:\nDerecha → Izquierda → Giro → Derecha → Izquierda → ?\n¿Qué viene después?',
+      opts:['Derecha','Izquierda','Giro','Salto'], correct:2,
+      explain:'El patrón se repite cada 3 pasos: Derecha → Izquierda → Giro. ¡El siguiente es Giro!'
+    },
+    {
+      type:'drag', title:'Reto 2 — Algoritmo de Baile', reward:450,
+      q:'Ordena los pasos para ejecutar una coreografía con 8 movimientos:',
+      blocks:['Repetir 8 veces:', 'Ejecutar movimiento[i]', 'Fin del bucle', 'i = i + 1', 'Inicio: i = 0'],
+      orderedLabels:['Inicio: i = 0', 'Repetir 8 veces:', 'Ejecutar movimiento[i]', 'i = i + 1', 'Fin del bucle'],
+      explain:'Todo algoritmo de repetición: inicializar → condición → cuerpo → incremento → fin.'
+    },
+    {
+      type:'choice', title:'Reto 3 — Lógica de Sincronía', reward:500,
+      q:'Hay 4 bailarines. El primero sale al minuto 0, el segundo al minuto 2, el tercero al minuto 4. ¿Al qué minuto sale el cuarto?',
+      opts:['5','6','7','8'], correct:1,
+      explain:'La diferencia entre cada bailarín es 2 minutos. 0 → 2 → 4 → 6. ¡El patrón es +2!'
+    }
+  ],
+  // WORLD 8 — Idiomas (FINAL BOSS)
+  [
+    {
+      type:'choice', title:'Reto 1 — Inglés: Estructuras', reward:500,
+      q:'In English, which sentence is grammatically CORRECT?',
+      opts:['She don\'t like coding','He have a computer','They are learning JavaScript','I is a student'], correct:2,
+      explain:'"They are learning JavaScript" is correct. With "they" we use "are", not "is" or "am".'
+    },
+    {
+      type:'drag', title:'Reto 2 — Français: Ordonne la phrase', reward:550,
+      q:'En français, ordonne les mots pour former une phrase correcte (En el colegio aprendo computación):',
+      blocks:['apprends', 'À l\'école,', 'l\'informatique.', 'j\''],
+      orderedLabels:['À l\'école,', 'j\'', 'apprends', 'l\'informatique.'],
+      explain:'En français: À l\'école, j\'apprends l\'informatique. Sujeto + verbo + objeto.'
+    },
+    {
+      type:'choice', title:'Reto 3 — Bilingual Tech', reward:600,
+      q:'¿Cuál es la traducción correcta al inglés de "bucle" (en programación)?',
+      opts:['variable','function','loop','array'], correct:2,
+      explain:'"Loop" en inglés = "bucle" en español. Es la estructura que repite código: for loop, while loop.'
+    }
+  ]
 ];
- 
+
 // ─────────────────────────────────────────────
 // GAME STATE
 // ─────────────────────────────────────────────
@@ -615,32 +707,32 @@ const G = {
   attackEnabled:false, bossHP:100, superpower:false, worldCleared:false,
   challengesPassed:0
 };
- 
+
 // ─────────────────────────────────────────────
 // CANVAS ENGINE
 // ─────────────────────────────────────────────
 const gc = document.getElementById('gc');
 const gx = gc.getContext('2d');
 let W = gc.width, H = gc.height;
- 
+
 function resizeCv() {
   W = gc.width = window.innerWidth;
   H = gc.height = window.innerHeight;
 }
 resizeCv();
 window.addEventListener('resize', resizeCv);
- 
+
 const keys = {};
 window.addEventListener('keydown', e => {
   keys[e.key.toLowerCase()] = true;
   if (e.key === 'Escape') togglePause();
 });
 window.addEventListener('keyup', e => { keys[e.key.toLowerCase()] = false; });
- 
+
 // Mouse / touch attack
 document.getElementById('gc').addEventListener('click', () => { keys['x'] = true; setTimeout(() => { keys['x'] = false; }, 80); });
 document.getElementById('gc').addEventListener('touchstart', (e) => { e.preventDefault(); keys['x'] = true; setTimeout(() => { keys['x'] = false; }, 80); }, {passive:false});
- 
+
 // ─────────────────────────────────────────────
 // PLAYER OBJECT
 // ─────────────────────────────────────────────
@@ -652,14 +744,14 @@ const P = {
   attackCooldown:0
 };
 const GR = 0.55, JUMP = -13.5, SPEED = 5.5;
- 
+
 // ─────────────────────────────────────────────
 // ENEMIES
 // ─────────────────────────────────────────────
 let enemies = [], projectiles = [], particles = [];
 let challengeBlocks = [];
 let bossRef = null;
- 
+
 // ─────────────────────────────────────────────
 // DRAW CHARACTER PREVIEWS
 // ─────────────────────────────────────────────
@@ -670,7 +762,7 @@ function drawPreview(id, type) {
   c.clearRect(0, 0, 80, 100);
   drawChar(c, 40, 80, type, 1, false);
 }
- 
+
 function drawChar(c, cx, cy, type, facing, onGround) {
   c.save();
   c.translate(cx, cy);
@@ -680,7 +772,7 @@ function drawChar(c, cx, cy, type, facing, onGround) {
   else drawBoy(c, onGround);
   c.restore();
 }
- 
+
 function drawKangaroo(c, ground) {
   // Tail
   c.strokeStyle = '#a86825'; c.lineWidth = 5; c.lineCap = 'round';
@@ -724,7 +816,7 @@ function drawKangaroo(c, ground) {
   c.fillStyle = '#6a3b0a';
   c.beginPath(); c.ellipse(0, -27, 2.5, 1.5, 0, 0, Math.PI*2); c.fill();
 }
- 
+
 function drawGirl(c, ground) {
   // Legs / skirt bottom
   c.fillStyle = '#1a3a5c';
@@ -778,7 +870,7 @@ function drawGirl(c, ground) {
   c.strokeStyle = '#8b4513'; c.lineWidth = 1;
   c.beginPath(); c.arc(0, -24, 4, 0.2, Math.PI-0.2); c.stroke();
 }
- 
+
 function drawBoy(c, ground) {
   // Pants
   c.fillStyle = '#1a3a5c';
@@ -830,7 +922,7 @@ function drawBoy(c, ground) {
     c.beginPath(); c.arc(px, -19, 1, 0, Math.PI*2); c.fill();
   }
 }
- 
+
 // ─────────────────────────────────────────────
 // ENEMY DRAWING
 // ─────────────────────────────────────────────
@@ -843,6 +935,7 @@ function drawEnemy(e) {
   else if (e.type === 'virus') drawVirus(gx);
   else if (e.type === 'turret') drawTurret(gx);
   else if (e.type === 'minineo') drawMiniNeo(gx);
+  else if (e.type === 'glitch') drawGlitch(gx, e);
   else if (e.type === 'boss') drawBossEnemy(gx, e);
   gx.restore();
   // HP bar above
@@ -854,7 +947,7 @@ function drawEnemy(e) {
     gx.fillRect(e.x - bw/2, e.y - e.h/2 - 12, bw * (e.hp / e.maxHp), bh);
   }
 }
- 
+
 function drawGuardian(c) {
   // Corrupted tree guardian
   // Body (brown trunk shape)
@@ -884,7 +977,7 @@ function drawGuardian(c) {
   c.fillStyle = '#3d2810';
   c.fillRect(-16, 18, 14, 10); c.fillRect(2, 18, 14, 10);
 }
- 
+
 function drawVirus(c) {
   // Hexagonal virus
   c.fillStyle = '#00b4cc';
@@ -920,7 +1013,35 @@ function drawVirus(c) {
   c.fillStyle = '#00d4ff'; c.font = 'bold 8px monospace'; c.textAlign = 'center';
   c.fillText('01', 0, 8);
 }
- 
+
+function drawGlitch(c, e) {
+  // Glitchy note/dancer enemy — colorful, glitchy
+  const t = Date.now() / 150;
+  const colors = ['#ff79c6','#74b9ff','#fdcb6e','#a29bfe','#fd79a8'];
+  const offset = Math.floor(Math.sin(t) * 4);
+  // Body with glitch offset
+  c.fillStyle = colors[Math.floor(t * 0.5) % colors.length];
+  c.fillRect(-14 + offset, -20, 28, 40);
+  // Glitch stripes
+  for (let i = 0; i < 5; i++) {
+    const sh = Math.floor(Math.sin(t * 2 + i) * 6);
+    c.fillStyle = colors[(i + Math.floor(t)) % colors.length] + '99';
+    c.fillRect(-14 + sh, -18 + i * 7, 28, 4);
+  }
+  // Head
+  c.fillStyle = '#222';
+  c.beginPath(); c.arc(0, -26, 10, 0, Math.PI*2); c.fill();
+  // Eyes — pixel style
+  c.fillStyle = colors[0];
+  c.fillRect(-5, -29, 4, 4);
+  c.fillRect(1, -29, 4, 4);
+  // Music note on body
+  c.fillStyle = '#fff';
+  c.font = 'bold 14px serif';
+  c.textAlign = 'center';
+  c.fillText('♫', 0, -5);
+}
+
 function drawTurret(c) {
   // Base
   c.fillStyle = '#555';
@@ -948,7 +1069,7 @@ function drawTurret(c) {
     c.fillRect(-16, 4 + i*5, 8, 3);
   }
 }
- 
+
 function drawMiniNeo(c) {
   // Cape
   c.fillStyle = '#4a0072';
@@ -989,7 +1110,7 @@ function drawMiniNeo(c) {
   c.strokeStyle = '#c0392b'; c.lineWidth = 1;
   c.beginPath(); c.moveTo(-2, -26); c.lineTo(2, -20); c.stroke();
 }
- 
+
 function drawBossEnemy(c, e) {
   const phase = e.hp <= 33 ? 2 : e.hp <= 66 ? 1 : 0;
   const colors = ['#a29bfe', '#e94560', '#ff0000'];
@@ -1048,12 +1169,12 @@ function drawBossEnemy(c, e) {
     c.fillText('if', Math.cos(t+4)*38, -10 + Math.sin(t+4)*22);
   }
 }
- 
+
 // ─────────────────────────────────────────────
 // WORLD BACKGROUNDS — DETAILED
 // ─────────────────────────────────────────────
 let bgOffset = 0;
- 
+
 function drawWorld() {
   const w = WORLDS[G.world];
   if (w.bg === 'jungle') drawJungleBG();
@@ -1061,9 +1182,12 @@ function drawWorld() {
   else if (w.bg === 'campus') drawCampusBG();
   else if (w.bg === 'factory') drawFactoryBG();
   else if (w.bg === 'library') drawLibraryBG();
+  else if (w.bg === 'music') drawMusicBG();
+  else if (w.bg === 'dance') drawDanceBG();
+  else if (w.bg === 'languages') drawLanguagesBG();
   else drawTowerBG();
 }
- 
+
 function drawJungleBG() {
   // Sky gradient
   const sk = gx.createLinearGradient(0, 0, 0, H);
@@ -1121,7 +1245,7 @@ function drawJungleBG() {
     gx.beginPath(); gx.arc(fx, fy, 2, 0, Math.PI*2); gx.fill();
   }
 }
- 
+
 function drawLabBG() {
   const sk = gx.createLinearGradient(0, 0, 0, H);
   sk.addColorStop(0, '#0a1a2e');
@@ -1177,7 +1301,7 @@ function drawLabBG() {
     gx.fillText(col, x, H - 90 - (i * 20 % 60));
   }
 }
- 
+
 function drawCampusBG() {
   // Dramatic sunset sky
   const sk = gx.createLinearGradient(0, 0, 0, H * 0.7);
@@ -1222,7 +1346,7 @@ function drawCampusBG() {
   gx.fillStyle = '#3a2a1a';
   gx.fillRect(W * 0.4, H - 100, W * 0.2, 100);
 }
- 
+
 function drawFactoryBG() {
   gx.fillStyle = '#0a0a0a'; gx.fillRect(0, 0, W, H);
   // Smoke
@@ -1268,7 +1392,7 @@ function drawFactoryBG() {
     gx.beginPath(); gx.moveTo(0, y); gx.lineTo(W, y); gx.stroke();
   }
 }
- 
+
 function drawLibraryBG() {
   gx.fillStyle = '#1a0f0a'; gx.fillRect(0, 0, W, H);
   // Wood paneling
@@ -1315,7 +1439,7 @@ function drawLibraryBG() {
     gx.fillRect(x, H - 90, 110, 10);
   }
 }
- 
+
 function drawTowerBG() {
   // Storm sky
   const sk = gx.createLinearGradient(0, 0, 0, H);
@@ -1361,12 +1485,12 @@ function drawTowerBG() {
     gx.beginPath(); gx.moveTo(0, y); gx.lineTo(W, y); gx.stroke();
   }
 }
- 
+
 // ─────────────────────────────────────────────
 // PLATFORMS
 // ─────────────────────────────────────────────
 let worldPlatforms = [];
- 
+
 function buildPlatforms(worldId) {
   const floor = H - 90;
   const base = [
@@ -1408,10 +1532,189 @@ function buildPlatforms(worldId) {
       {x:W/2-80, y:floor-220, w:160, h:18},
       {x:80, y:floor-340, w:100, h:18},{x:W-180, y:floor-340, w:100, h:18},
     ],
+    // World 6 — Music Studio
+    [
+      {x:60, y:floor-120, w:140, h:18},{x:280, y:floor-200, w:110, h:18},
+      {x:460, y:floor-140, w:120, h:18},{x:640, y:floor-220, w:110, h:18},
+      {x:830, y:floor-160, w:140, h:18},{x:1050, y:floor-110, w:130, h:18},
+    ],
+    // World 7 — Dance Floor
+    [
+      {x:80, y:floor-130, w:130, h:18},{x:300, y:floor-200, w:120, h:18},
+      {x:500, y:floor-150, w:130, h:18},{x:720, y:floor-230, w:110, h:18},
+      {x:920, y:floor-170, w:130, h:18},{x:1100, y:floor-120, w:120, h:18},
+    ],
+    // World 8 — Languages Academy (boss world)
+    [
+      {x:90, y:floor-110, w:130, h:18},{x:W-220, y:floor-110, w:130, h:18},
+      {x:W/2-90, y:floor-230, w:180, h:18},
+      {x:90, y:floor-360, w:110, h:18},{x:W-200, y:floor-360, w:110, h:18},
+    ],
   ];
   worldPlatforms = [...base, ...(extras[worldId] || [])];
 }
- 
+
+function drawMusicBG() {
+  // Deep purple concert hall
+  const sk = gx.createLinearGradient(0, 0, 0, H);
+  sk.addColorStop(0, '#1a0a2e'); sk.addColorStop(0.5, '#2d0a4a'); sk.addColorStop(1, '#1a0030');
+  gx.fillStyle = sk; gx.fillRect(0, 0, W, H);
+  // Spotlight beams
+  const t = Date.now() / 1500;
+  const spotColors = ['rgba(255,121,198,.12)','rgba(116,185,255,.12)','rgba(253,203,110,.1)'];
+  for (let i = 0; i < 3; i++) {
+    gx.save();
+    gx.translate(W * (0.2 + i * 0.3), 0);
+    gx.rotate(Math.sin(t + i) * 0.15);
+    const sg = gx.createLinearGradient(0, 0, 0, H * 0.8);
+    sg.addColorStop(0, spotColors[i]); sg.addColorStop(1, 'transparent');
+    gx.fillStyle = sg;
+    gx.beginPath(); gx.moveTo(-60, 0); gx.lineTo(60, 0); gx.lineTo(180, H*0.8); gx.lineTo(-180, H*0.8); gx.closePath(); gx.fill();
+    gx.restore();
+  }
+  // Piano keys in background
+  const keyW = 28, keyH = 80;
+  for (let i = 0; i < 24; i++) {
+    gx.fillStyle = i % 7 === 1 || i % 7 === 3 || i % 7 === 5 ? '#111' : 'rgba(255,255,255,.08)';
+    gx.fillRect(W * 0.1 + i * keyW, H * 0.1, keyW - 2, keyH);
+  }
+  // Music notes floating
+  const notes = ['♩','♪','♫','♬'];
+  gx.font = '24px serif'; gx.textAlign = 'center';
+  for (let i = 0; i < 8; i++) {
+    const nx = (i * 130 + Date.now() / 20) % (W + 60) - 30;
+    const ny = 80 + (i * 60 % 200) + Math.sin(t * 2 + i) * 15;
+    gx.fillStyle = ['#ff79c6','#74b9ff','#fdcb6e','#a29bfe'][i%4];
+    gx.globalAlpha = 0.5 + Math.sin(t + i) * 0.3;
+    gx.fillText(notes[i % 4], nx, ny);
+  }
+  gx.globalAlpha = 1;
+  // Stage floor
+  const fl = gx.createLinearGradient(0, H - 90, 0, H);
+  fl.addColorStop(0, '#3d1060'); fl.addColorStop(1, '#1a0030');
+  gx.fillStyle = fl; gx.fillRect(0, H - 90, W, 90);
+  // Stage lights strip
+  for (let i = 0; i < 12; i++) {
+    const blink = Math.sin(Date.now()/300 + i * 0.8) > 0;
+    gx.fillStyle = blink ? ['#ff79c6','#74b9ff','#fdcb6e'][i%3] : 'rgba(255,255,255,.05)';
+    gx.beginPath(); gx.arc(W * 0.05 + i * (W * 0.9 / 11), H - 88, 5, 0, Math.PI*2); gx.fill();
+  }
+}
+
+function drawDanceBG() {
+  // Colorful dance floor
+  gx.fillStyle = '#0d0d1a'; gx.fillRect(0, 0, W, H);
+  // Mirror ball reflection spots
+  const t = Date.now() / 800;
+  for (let i = 0; i < 20; i++) {
+    const x = ((i * 97 + t * 40) % W);
+    const y = 60 + (i * 53 % 300) + Math.sin(t * 3 + i) * 20;
+    gx.fillStyle = `hsla(${(i * 37 + Date.now()/20) % 360}, 100%, 70%, 0.4)`;
+    gx.beginPath(); gx.arc(x, y, 6, 0, Math.PI*2); gx.fill();
+  }
+  // Mirror ball
+  gx.fillStyle = 'rgba(255,255,255,.15)';
+  gx.beginPath(); gx.arc(W/2, 50, 30, 0, Math.PI*2); gx.fill();
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * Math.PI * 2 + t;
+    gx.fillStyle = 'rgba(255,255,255,.3)';
+    gx.fillRect(W/2 + Math.cos(a)*18 - 4, 50 + Math.sin(a)*18 - 4, 8, 8);
+  }
+  // Colorful panels on walls
+  const panelColors = ['#e84393','#9b59b6','#3498db','#1abc9c','#f39c12'];
+  for (let i = 0; i < 5; i++) {
+    gx.fillStyle = panelColors[i] + '22';
+    gx.fillRect(i * (W/5), 0, W/5, H * 0.6);
+    gx.fillStyle = panelColors[i] + '66';
+    gx.fillRect(i * (W/5), 0, W/5, 8);
+  }
+  // Silhouette dancers in bg
+  for (let i = 0; i < 4; i++) {
+    const dx = W*0.15 + i * W*0.23;
+    const dy = H - 200;
+    const sway = Math.sin(t * 2 + i * 1.5) * 8;
+    gx.fillStyle = 'rgba(0,0,0,.6)';
+    // body
+    gx.fillRect(dx - 10 + sway, dy, 20, 40);
+    // head
+    gx.beginPath(); gx.arc(dx + sway, dy - 12, 12, 0, Math.PI*2); gx.fill();
+    // arms
+    gx.save(); gx.translate(dx + sway, dy + 10);
+    gx.rotate(Math.sin(t * 3 + i) * 0.6);
+    gx.fillRect(-20, 0, 16, 6);
+    gx.restore();
+    gx.save(); gx.translate(dx + sway, dy + 10);
+    gx.rotate(-Math.sin(t * 3 + i) * 0.6);
+    gx.fillRect(4, 0, 16, 6);
+    gx.restore();
+  }
+  // Dance floor tiles
+  const fl2 = gx.createLinearGradient(0, H - 90, 0, H);
+  fl2.addColorStop(0, '#1a1a3a'); fl2.addColorStop(1, '#0d0d1a');
+  gx.fillStyle = fl2; gx.fillRect(0, H - 90, W, 90);
+  for (let x = 0; x < W; x += 60) {
+    for (let y = H - 90; y < H; y += 30) {
+      const lit = Math.sin(Date.now()/400 + x*0.05 + y*0.1) > 0.6;
+      gx.fillStyle = lit ? `hsla(${(x+y+Date.now()/50)%360},80%,50%,.4)` : 'rgba(255,255,255,.02)';
+      gx.fillRect(x+1, y+1, 58, 28);
+    }
+  }
+}
+
+function drawLanguagesBG() {
+  // Academic hall — flags and books
+  gx.fillStyle = '#f8f4e8'; gx.fillRect(0, 0, W, H);
+  // Sky through windows
+  const sky = gx.createLinearGradient(0, 0, 0, H * 0.5);
+  sky.addColorStop(0, '#74b9ff'); sky.addColorStop(1, '#a8d8f0');
+  gx.fillStyle = sky; gx.fillRect(0, 0, W, H * 0.5);
+  // Large arched windows
+  for (let i = 0; i < 4; i++) {
+    const wx = W * 0.08 + i * (W * 0.24);
+    gx.fillStyle = '#87ceeb';
+    gx.beginPath();
+    gx.roundRect(wx, 40, W*0.18, H*0.45, [W*0.09, W*0.09, 4, 4]);
+    gx.fill();
+    gx.strokeStyle = '#c8a060'; gx.lineWidth = 6;
+    gx.stroke();
+  }
+  // UK Flag (Union Jack simplified)
+  drawMiniFlag(gx, W * 0.15, 60, '#012169', '#fff', '#c8102e', 'UK');
+  // French Flag (Tricolore)
+  drawMiniFlag(gx, W * 0.5, 60, '#002395', '#fff', '#ED2939', 'FR');
+  // Colombian Flag
+  drawMiniFlag(gx, W * 0.82, 60, '#FCD116', '#003893', '#CE1126', 'COL');
+  // Floating words
+  const words = ['Hello!','Bonjour!','Code','Learn','Aprender','¡Hola!','Salut!','World'];
+  const t = Date.now() / 2000;
+  gx.font = 'bold 18px sans-serif'; gx.textAlign = 'center';
+  for (let i = 0; i < words.length; i++) {
+    const wx2 = W * 0.1 + i * W * 0.11 + Math.sin(t + i) * 15;
+    const wy = 120 + Math.cos(t * 0.8 + i * 0.7) * 30;
+    gx.fillStyle = ['#012169','#ED2939','#002395','#c8102e','#0d3349','#003893','#FCD116','#222'][i];
+    gx.globalAlpha = 0.6 + Math.sin(t + i) * 0.3;
+    gx.fillText(words[i], wx2, wy);
+  }
+  gx.globalAlpha = 1;
+  // Marble floor
+  gx.fillStyle = '#e8e0d0'; gx.fillRect(0, H - 90, W, 90);
+  for (let x = 0; x < W; x += 80) {
+    gx.strokeStyle = '#d0c8b8'; gx.lineWidth = 1;
+    gx.strokeRect(x, H - 90, 80, 90);
+  }
+}
+
+function drawMiniFlag(c, x, y, col1, col2, col3, label) {
+  const fw = 80, fh = 50;
+  c.fillStyle = col1; c.fillRect(x, y, fw/3, fh);
+  c.fillStyle = col2; c.fillRect(x + fw/3, y, fw/3, fh);
+  c.fillStyle = col3; c.fillRect(x + fw*2/3, y, fw/3, fh);
+  c.strokeStyle = 'rgba(0,0,0,.2)'; c.lineWidth = 1;
+  c.strokeRect(x, y, fw, fh);
+  c.fillStyle = 'rgba(0,0,0,.7)'; c.font = 'bold 11px sans-serif'; c.textAlign = 'center';
+  c.fillText(label, x + fw/2, y + fh + 14);
+}
+
 function drawPlatforms() {
   const world = WORLDS[G.world];
   for (const p of worldPlatforms) {
@@ -1423,6 +1726,9 @@ function drawPlatforms() {
         factory:['#1a1a1a','#111'],
         library:['#2a1508','#1a0f05'],
         tower:['#0a0515','#050010'],
+        music:['#1a0a2e','#0d0020'],
+        dance:['#1a1a3a','#0d0d1a'],
+        languages:['#c8b89a','#a89878'],
       };
       const [c1, c2] = colors[world.bg] || ['#333','#222'];
       const gr = gx.createLinearGradient(0, p.y, 0, p.y + p.h);
@@ -1442,7 +1748,7 @@ function drawPlatforms() {
     }
   }
 }
- 
+
 // ─────────────────────────────────────────────
 // PLATFORM COLLISION
 // ─────────────────────────────────────────────
@@ -1459,13 +1765,13 @@ function collidePlatforms() {
   }
   if (P.y + P.h > H) { P.y = H - 90 - P.h; P.vy = 0; P.onGround = true; }
 }
- 
+
 // ─────────────────────────────────────────────
 // SPAWN ENEMIES
 // ─────────────────────────────────────────────
 function spawnEnemies(worldId) {
   enemies = [];
-  const types = ['guardian','virus','virus','minineo','none','boss'];
+  const types = ['guardian','virus','virus','minineo','none','boss','glitch','glitch','boss'];
   const type = types[worldId] || 'guardian';
   const floor = H - 90;
   const count = WORLDS[worldId].enemies;
@@ -1488,7 +1794,7 @@ function spawnEnemies(worldId) {
     if (worldId === 5) bossRef = e;
   }
 }
- 
+
 // ─────────────────────────────────────────────
 // PARTICLES & PROJECTILES
 // ─────────────────────────────────────────────
@@ -1504,11 +1810,11 @@ function spawnParticles(x, y, color, n) {
     });
   }
 }
- 
+
 function spawnProjectile(x, y, vx, vy, owner, color) {
   projectiles.push({x, y, vx, vy, owner, color, life:90, w:12, h:12});
 }
- 
+
 // ─────────────────────────────────────────────
 // CHALLENGE BLOCKS — visual markers on map
 // ─────────────────────────────────────────────
@@ -1524,7 +1830,7 @@ function buildChallengeBlocks(worldId) {
     challengeBlocks.push({x, y, w:36, h:36, solved, index:i});
   }
 }
- 
+
 function drawChallengeBlocks() {
   const t = Date.now() / 400;
   for (const b of challengeBlocks) {
@@ -1552,35 +1858,35 @@ function drawChallengeBlocks() {
     }
   }
 }
- 
+
 // ─────────────────────────────────────────────
 // MAIN GAME LOOP
 // ─────────────────────────────────────────────
 let raf = null;
 let lastTime = 0;
- 
+
 function gameStep(ts) {
   if (!G.running) return;
   if (G.paused) { raf = requestAnimationFrame(gameStep); return; }
   const dt = Math.min(ts - lastTime, 33) / 16.67;
   lastTime = ts;
   bgOffset += P.vx * 0.5;
- 
+
   // Timer — cuenta hacia arriba, sin límite (tiempo infinito)
   G.time += dt * 0.016 * 60;
- 
+
   // Input
   const spd = SPEED * (G.char === 'girl' ? 1.15 : 1);
   if (keys['arrowleft'] || keys['a']) { P.vx = -spd; P.facing = -1; }
   else if (keys['arrowright'] || keys['d']) { P.vx = spd; P.facing = 1; }
   else P.vx *= 0.82;
   if (Math.abs(P.vx) < 0.1) P.vx = 0;
- 
+
   const jf = JUMP * (G.char === 'kangaroo' ? 1.12 : 1);
   if ((keys['arrowup'] || keys[' '] || keys['w']) && P.onGround) {
     P.vy = jf; P.onGround = false;
   }
- 
+
   // Attack — teclas: X, Z, Y, F, Espacio+dirección o clic
   const attackKey = keys['x'] || keys['z'] || keys['y'] || keys['f'];
   if (attackKey && P.attackCooldown <= 0) {
@@ -1602,7 +1908,7 @@ function gameStep(ts) {
     }
   }
   if (P.attackCooldown > 0) P.attackCooldown--;
- 
+
   // Physics
   P.vy += GR * dt;
   if (P.vy > 16) P.vy = 16;
@@ -1612,7 +1918,7 @@ function gameStep(ts) {
   if (P.x > W - P.w) P.x = W - P.w;
   collidePlatforms();
   if (P.invul > 0) P.invul--;
- 
+
   // Check challenge proximity
   for (const b of challengeBlocks) {
     if (!b.solved && b.index === G.challengesDone) {
@@ -1623,20 +1929,21 @@ function gameStep(ts) {
       }
     }
   }
- 
+
   // Enemies
   updateEnemies(dt);
- 
+
   // Projectiles
   updateProjectiles();
- 
+
   // Particles
   updateParticles();
- 
+
   // Check world clear every frame
   checkWorldClear();
- 
-  // DRAW
+
+  // DRAW — limpiar canvas completamente antes de redibujar
+  gx.clearRect(0, 0, W, H);
   drawWorld();
   drawPlatforms();
   drawChallengeBlocks();
@@ -1645,13 +1952,13 @@ function gameStep(ts) {
   drawParticles();
   drawPlayerSprite();
   drawAttackIndicator();
- 
+
   updateHUD();
   raf = requestAnimationFrame(gameStep);
 }
- 
+
 function drawEnemies(list) { for (const e of list) drawEnemy(e); }
- 
+
 function drawProjectiles() {
   for (const proj of projectiles) {
     if (proj.owner === 'player') {
@@ -1669,7 +1976,7 @@ function drawProjectiles() {
     }
   }
 }
- 
+
 function drawParticles() {
   for (const p of particles) {
     gx.globalAlpha = p.life / p.maxLife;
@@ -1678,7 +1985,7 @@ function drawParticles() {
   }
   gx.globalAlpha = 1;
 }
- 
+
 function drawPlayerSprite() {
   if (P.invul > 0 && Math.floor(P.invul / 4) % 2 === 0) return;
   // Superpower aura
@@ -1713,31 +2020,29 @@ function drawPlayerSprite() {
   }
   drawChar(gx, P.x + P.w/2, P.y + P.h, G.char, P.facing, P.onGround);
 }
- 
+
 function drawAttackIndicator() {
   const t = Date.now() / 400;
+  // Fondo sólido siempre — evita rastros del personaje
+  gx.fillStyle = 'rgba(10,14,26,0.88)';
+  gx.fillRect(0, H - 112, W, 40);
   if (G.superpower) {
-    // Pulsing golden bar
-    gx.fillStyle = `rgba(240,192,112,${0.15 + Math.sin(t)*0.08})`;
-    gx.fillRect(0, H - 108, W, 36);
+    gx.fillStyle = `rgba(240,192,112,${0.25 + Math.sin(t)*0.1})`;
+    gx.fillRect(0, H - 112, W, 40);
     gx.fillStyle = '#f0c070';
     gx.font = 'bold 13px sans-serif'; gx.textAlign = 'center';
-    gx.fillText('⚡ SUPERPODER ACTIVO — Presiona X o Z para ataque triple', W/2, H - 86);
+    gx.fillText('⚡ SUPERPODER ACTIVO — Presiona X o Z para ataque triple', W/2, H - 88);
   } else if (G.attackEnabled) {
-    gx.fillStyle = 'rgba(78,204,163,.1)';
-    gx.fillRect(0, H - 108, W, 36);
     gx.fillStyle = '#4ecca3';
     gx.font = '12px sans-serif'; gx.textAlign = 'center';
-    gx.fillText('✅ Ataque desbloqueado — Presiona X o Z para atacar', W/2, H - 86);
+    gx.fillText('✅ Ataque desbloqueado — Presiona X o Z para atacar', W/2, H - 88);
   } else {
-    gx.fillStyle = 'rgba(200,0,0,.1)';
-    gx.fillRect(0, H - 108, W, 36);
     gx.fillStyle = '#e94560';
     gx.font = '12px sans-serif'; gx.textAlign = 'center';
-    gx.fillText('🔒 Acércate al bloque ? para resolver el reto y desbloquear el ataque', W/2, H - 86);
+    gx.fillText('🔒 Acércate al bloque ? y resuelve el reto para desbloquear el ataque', W/2, H - 88);
   }
 }
- 
+
 function updateEnemies(dt) {
   for (const e of enemies) {
     if (!e.alive) continue;
@@ -1771,7 +2076,7 @@ function updateEnemies(dt) {
     }
   }
 }
- 
+
 function updateProjectiles() {
   for (let i = projectiles.length - 1; i >= 0; i--) {
     const proj = projectiles[i];
@@ -1828,7 +2133,7 @@ function updateProjectiles() {
     }
   }
 }
- 
+
 function updateParticles() {
   for (let i = particles.length - 1; i >= 0; i--) {
     const p = particles[i];
@@ -1836,7 +2141,7 @@ function updateParticles() {
     if (p.life <= 0) particles.splice(i, 1);
   }
 }
- 
+
 function takeDamage() {
   G.lives--;
   P.invul = 90;
@@ -1844,7 +2149,7 @@ function takeDamage() {
   notify(`💔 -1 vida`, '#e17055');
   if (G.lives <= 0) { triggerGameOver('Te quedaste sin vidas.'); }
 }
- 
+
 function updateBossBar() {
   const wrap = document.getElementById('boss-bar-wrap');
   const fill = document.getElementById('boss-fill');
@@ -1853,7 +2158,7 @@ function updateBossBar() {
     fill.style.width = Math.max(0, G.bossHP) + '%';
   }
 }
- 
+
 function checkWorldClear() {
   if (G.worldCleared) return; // ya detectado, no repetir
   const alive = enemies.filter(e => e.alive).length;
@@ -1864,92 +2169,152 @@ function checkWorldClear() {
     setTimeout(worldComplete, 600);
   }
 }
- 
+
 // ─────────────────────────────────────────────
 // CHALLENGE SYSTEM
 // ─────────────────────────────────────────────
 let challengeOpen = false;
 let challengeIndex = 0;
- 
+
 function openChallenge(idx) {
   if (challengeOpen || G.challengesDone > idx) return;
   const world = G.world;
   const chs = CHALLENGES[world];
   if (!chs || !chs[idx]) return;
   const ch = chs[idx];
-  // Quiz world triggers modal
-  if (ch.type === 'quiz') { openQuizModal(ch); return; }
+  // Always set challengeOpen FIRST before any UI
   challengeOpen = true;
   challengeIndex = idx;
+  // Quiz world triggers modal
+  if (ch.type === 'quiz') { openQuizModal(ch); return; }
   document.getElementById('ch-title').textContent = ch.title;
   buildChallengeUI(ch, idx);
   document.getElementById('challenge').classList.add('open');
 }
- 
+
 function buildChallengeUI(ch, idx) {
   const body = document.getElementById('ch-body');
+  body.innerHTML = '';
+
   if (ch.type === 'choice' || ch.type === 'bug') {
-    let codeBlock = ch.code || ch.type === 'bug' ? `<code>${(ch.code||ch.code||ch.code)}</code>` : '';
-    if (ch.type === 'bug') codeBlock = `<code>${ch.code}</code>`;
-    body.innerHTML = `
-      <div class="ch-question">
-        <p><strong style="color:var(--gold);">${ch.type==='bug'?'🐛 DEBUGGING':'🧠 LÓGICA'}</strong></p>
-        <p>${ch.q.replace(/\n/g,'<br>')}</p>
-        ${codeBlock}
-        <div class="options" id="opts">
-          ${ch.opts.map((o,i)=>`<button class="opt-btn" onclick="answerChoice(${i})">${String.fromCharCode(65+i)}) ${o}</button>`).join('')}
-        </div>
-      </div>
-      <div class="ch-question" style="background:rgba(78,204,163,.05);border-color:rgba(78,204,163,.25);">
-        <p><strong style="color:var(--green);">💡 PISTA</strong></p>
-        <p style="font-size:12px;color:var(--muted);">${ch.explain}</p>
-        <div id="ch-result" style="margin-top:10px;"></div>
-      </div>`;
+    // Left panel — question + options
+    const left = document.createElement('div');
+    left.className = 'ch-question';
+    const icon = ch.type === 'bug' ? '🐛 DEBUGGING' : '🧠 LÓGICA';
+    left.innerHTML = '<p><strong style="color:var(--gold);">' + icon + '</strong></p>';
+    // Question text
+    const qp = document.createElement('p');
+    qp.innerHTML = ch.q.replace(/\n/g, '<br>');
+    left.appendChild(qp);
+    // Code block if needed
+    if (ch.code) {
+      const codeEl = document.createElement('code');
+      codeEl.style.cssText = 'display:block;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:10px 12px;font-size:13px;color:#4ecca3;font-family:monospace;margin:8px 0;white-space:pre;overflow-x:auto;';
+      codeEl.textContent = ch.code;
+      left.appendChild(codeEl);
+    }
+    // Options using createElement
+    const optsDiv = document.createElement('div');
+    optsDiv.className = 'options';
+    optsDiv.id = 'opts';
+    (ch.opts || []).forEach(function(optText, i) {
+      const btn = document.createElement('button');
+      btn.className = 'opt-btn';
+      btn.textContent = String.fromCharCode(65 + i) + ')  ' + optText;
+      btn.addEventListener('click', function() { answerChoice(i, ch); });
+      optsDiv.appendChild(btn);
+    });
+    left.appendChild(optsDiv);
+    body.appendChild(left);
+
+    // Right panel — hint + result
+    const right = document.createElement('div');
+    right.className = 'ch-question';
+    right.style.cssText = 'background:rgba(78,204,163,.05);border-color:rgba(78,204,163,.25);';
+    right.innerHTML = '<p><strong style="color:#4ecca3;">💡 PISTA</strong></p><p style="font-size:12px;color:#8892b0;">' + ch.explain + '</p><div id="ch-result" style="margin-top:10px;"></div>';
+    body.appendChild(right);
+
   } else if (ch.type === 'code') {
-    body.innerHTML = `
-      <div class="ch-question">
-        <p><strong style="color:var(--cyan);">💻 CÓDIGO</strong></p>
-        <p>${ch.q.replace(/\n/g,'<br>')}</p>
-        <p style="font-size:11px;color:var(--muted);">💡 Pista: ${ch.hint}</p>
-        <div class="code-input-wrap">
-          <textarea class="code-input" id="code-answer" placeholder="// Escribe tu código aquí...">${ch.starter||''}</textarea>
-          <button class="run-btn" onclick="runCode()">▶ EJECUTAR</button>
-          <div class="code-output" id="code-out">Haz click en Ejecutar para probar tu código.</div>
-        </div>
-      </div>
-      <div class="ch-question" style="background:rgba(78,204,163,.05);border-color:rgba(78,204,163,.25);">
-        <p><strong style="color:var(--green);">📋 OBJETIVO</strong></p>
-        <p style="font-size:12px;">${ch.explain}</p>
-        <code>${ch.starter}</code>
-      </div>`;
+    const left = document.createElement('div');
+    left.className = 'ch-question';
+    left.innerHTML = '<p><strong style="color:var(--cyan);">💻 CÓDIGO</strong></p>';
+    const qp = document.createElement('p');
+    qp.innerHTML = ch.q.replace(/\n/g, '<br>');
+    left.appendChild(qp);
+    const hint = document.createElement('p');
+    hint.style.cssText = 'font-size:11px;color:#8892b0;';
+    hint.textContent = '💡 Pista: ' + (ch.hint || '');
+    left.appendChild(hint);
+    const wrap = document.createElement('div');
+    wrap.className = 'code-input-wrap';
+    const ta = document.createElement('textarea');
+    ta.className = 'code-input';
+    ta.id = 'code-answer';
+    ta.placeholder = '// Escribe tu código aquí...';
+    ta.value = ch.starter || '';
+    const runBtn = document.createElement('button');
+    runBtn.className = 'run-btn';
+    runBtn.textContent = '▶ EJECUTAR';
+    runBtn.addEventListener('click', runCode);
+    const outDiv = document.createElement('div');
+    outDiv.className = 'code-output';
+    outDiv.id = 'code-out';
+    outDiv.textContent = 'Haz click en Ejecutar para probar tu código.';
+    wrap.appendChild(ta); wrap.appendChild(runBtn); wrap.appendChild(outDiv);
+    left.appendChild(wrap);
+    body.appendChild(left);
+
+    const right = document.createElement('div');
+    right.className = 'ch-question';
+    right.style.cssText = 'background:rgba(78,204,163,.05);border-color:rgba(78,204,163,.25);';
+    right.innerHTML = '<p><strong style="color:#4ecca3;">📋 OBJETIVO</strong></p><p style="font-size:12px;">' + ch.explain + '</p>';
+    const codeEl = document.createElement('code');
+    codeEl.style.cssText = 'display:block;background:rgba(0,0,0,.4);padding:8px;border-radius:4px;font-size:12px;margin-top:8px;white-space:pre;color:#4ecca3;';
+    codeEl.textContent = ch.starter || '';
+    right.appendChild(codeEl);
+    body.appendChild(right);
+
   } else if (ch.type === 'drag') {
     buildDragUI(ch, body);
   }
 }
- 
-function answerChoice(picked) {
-  const ch = CHALLENGES[G.world][challengeIndex];
-  const opts = document.querySelectorAll('.opt-btn');
-  opts.forEach((b,i) => {
-    if (i === ch.correct) b.classList.add('correct');
-    else if (i === picked && i !== ch.correct) b.classList.add('wrong');
-    b.onclick = null;
+
+function answerChoice(picked, ch) {
+  const opts = document.querySelectorAll('#opts .opt-btn');
+  opts.forEach(function(b) { b.style.pointerEvents = 'none'; });
+  opts.forEach(function(b, i) {
+    if (i === ch.correct) {
+      b.style.borderColor = '#4ecca3'; b.style.background = 'rgba(78,204,163,.2)'; b.style.color = '#4ecca3';
+    } else if (i === picked && i !== ch.correct) {
+      b.style.borderColor = '#e94560'; b.style.background = 'rgba(233,69,96,.15)'; b.style.color = '#e94560';
+    }
   });
   const res = document.getElementById('ch-result');
   if (picked === ch.correct) {
-    res.innerHTML = `<p style="color:var(--green);font-weight:700;">✅ ¡Correcto! +${ch.reward} puntos</p>`;
-    setTimeout(() => solveChallenge(ch.reward), 1200);
+    if (res) res.innerHTML = '<p style="color:#4ecca3;font-weight:700;">✅ ¡Correcto! +' + ch.reward + ' puntos 🎉</p>';
+    setTimeout(function() { solveChallenge(ch.reward); }, 1300);
   } else {
-    res.innerHTML = `<p style="color:var(--danger);">❌ Incorrecto. Inténtalo de nuevo en unos segundos.</p>`;
+    if (res) res.innerHTML = '<p style="color:#e94560;">❌ Incorrecto. La respuesta correcta está marcada en verde. Inténtalo de nuevo.</p>';
     G.score = Math.max(0, G.score - 50);
-    setTimeout(() => {
-      opts.forEach(b => { b.classList.remove('wrong'); b.classList.remove('correct'); });
-      opts.forEach((b,i) => { b.onclick = () => answerChoice(i); });
-      res.innerHTML = '';
-    }, 2000);
+    setTimeout(function() {
+      opts.forEach(function(b) {
+        b.style.pointerEvents = 'auto';
+        b.style.borderColor = ''; b.style.background = ''; b.style.color = '';
+      });
+      if (res) res.innerHTML = '';
+      // Re-bind click handlers
+      opts.forEach(function(b, i) {
+        b.replaceWith(b.cloneNode(true));
+      });
+      // Rebuild options cleanly
+      const newOpts = document.querySelectorAll('#opts .opt-btn');
+      newOpts.forEach(function(b, i) {
+        b.addEventListener('click', function() { answerChoice(i, ch); });
+      });
+    }, 2200);
   }
 }
- 
+
 function runCode() {
   const ch = CHALLENGES[G.world][challengeIndex];
   const raw = document.getElementById('code-answer').value;
@@ -1975,120 +2340,202 @@ function runCode() {
     out.className = 'code-output err'; out.textContent = '❌ Error en tu código: ' + e.message;
   }
 }
- 
+
 let dragOrder = [];
- 
+
 function buildDragUI(ch, body) {
   dragOrder = [];
+  _shuffledBlocks = []; // reset so blocks get reshuffled on open
   body.innerHTML = `
     <div class="ch-question" style="grid-column:1/-1;">
-      <p><strong style="color:var(--purple);">🔀 ALGORITMO — Ordena los pasos</strong></p>
-      <p>${ch.q}</p>
-      <p style="font-size:11px;color:var(--muted);">Arrastra los bloques al área de solución en el orden correcto.</p>
-      <div style="margin-top:12px;">
-        <p style="font-size:11px;color:var(--cyan);margin-bottom:6px;">BLOQUES DISPONIBLES:</p>
-        <div class="blocks-area" id="drag-source">
-          ${shuffle([...ch.blocks]).map((b,i)=>`<div class="block-chip" draggable="true" data-label="${b}" style="background:rgba(162,155,254,.15);border-color:#a29bfe;color:#a29bfe;" ondragstart="dragStart(event,'${b.replace(/'/g,"\\'")}')"><code>${b}</code></div>`).join('')}
-        </div>
-        <p style="font-size:11px;color:var(--gold);margin-top:12px;margin-bottom:6px;">TU SOLUCIÓN (arrastra aquí):</p>
-        <div class="drop-zone" id="drag-target" ondragover="allowDrop(event)" ondrop="dropBlock(event)">
-          <span style="color:var(--muted);font-size:11px;">Arrastra los bloques aquí en orden...</span>
-        </div>
-        <div style="display:flex;gap:10px;margin-top:10px;">
-          <button class="run-btn" onclick="checkDrag()">✅ VERIFICAR</button>
-          <button class="run-btn" style="background:var(--muted);" onclick="clearDrop()">🗑️ Limpiar</button>
-        </div>
-        <div id="drag-result" style="margin-top:8px;font-size:13px;"></div>
+      <p><strong style="color:var(--purple);">🔀 ORDENA LOS BLOQUES</strong></p>
+      <p style="margin-bottom:8px;">${ch.q}</p>
+      <p style="font-size:12px;color:var(--gold);background:rgba(240,192,112,.1);padding:8px;border-radius:6px;margin-bottom:12px;">
+        👆 Haz <strong>clic</strong> en los bloques en el orden correcto.
+      </p>
+      <p style="font-size:11px;color:var(--cyan);margin-bottom:8px;">BLOQUES DISPONIBLES — clic para agregar en orden:</p>
+      <div class="blocks-area" id="drag-source" style="flex-wrap:wrap;gap:8px;"></div>
+      <p style="font-size:11px;color:var(--gold);margin-top:14px;margin-bottom:8px;">TU ORDEN (clic para quitar):</p>
+      <div id="drag-target" style="min-height:54px;background:rgba(0,0,0,.3);border:2px dashed rgba(0,212,255,.3);border-radius:8px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <span id="drop-hint" style="color:var(--muted);font-size:11px;">Los bloques aparecerán aquí...</span>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+        <button class="run-btn" onclick="checkDrag()" style="flex:1;min-width:120px;">✅ VERIFICAR</button>
+        <button class="run-btn" style="background:#555;flex:1;min-width:120px;" onclick="clearDrop()">🗑️ LIMPIAR</button>
+      </div>
+      <div id="drag-result" style="margin-top:10px;font-size:14px;padding:8px;border-radius:6px;"></div>
+      <div style="margin-top:10px;padding:10px;background:rgba(78,204,163,.08);border-left:3px solid var(--green);border-radius:4px;">
+        <p style="font-size:12px;color:var(--green);">💡 ${ch.explain}</p>
       </div>
     </div>`;
+  renderSourceBlocks(ch);
+  renderTargetBlocks();
 }
- 
-function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
- 
-function dragStart(e, label) {
-  e.dataTransfer.setData('text/plain', label);
-}
- 
-function allowDrop(e) {
-  e.preventDefault();
-  document.getElementById('drag-target').classList.add('over');
-}
- 
-function dropBlock(e) {
-  e.preventDefault();
-  const label = e.dataTransfer.getData('text/plain');
-  dragOrder.push(label);
-  const zone = document.getElementById('drag-target');
-  zone.classList.remove('over');
-  zone.innerHTML = '';
-  dragOrder.forEach(b => {
+
+// Shuffle state per challenge — randomized once when challenge opens
+let _shuffledBlocks = [];
+
+function renderSourceBlocks(ch) {
+  const src = document.getElementById('drag-source');
+  if (!src) return;
+  // If first render (empty), shuffle the blocks randomly
+  if (_shuffledBlocks.length === 0) {
+    _shuffledBlocks = [...ch.blocks].sort(function() { return Math.random() - 0.5; });
+  }
+  src.innerHTML = '';
+  _shuffledBlocks.forEach(function(b) {
     const chip = document.createElement('div');
     chip.className = 'block-chip';
-    chip.style.cssText = 'background:rgba(0,212,255,.15);border-color:#00d4ff;color:#00d4ff;';
-    chip.innerHTML = `<code>${b}</code>`;
+    chip.style.cssText = 'background:rgba(162,155,254,.2);border:2px solid #a29bfe;color:#a29bfe;cursor:pointer;padding:10px 14px;font-size:13px;border-radius:8px;transition:all .15s;';
+    chip.innerHTML = '<code>' + b + '</code>';
+    chip.addEventListener('click', function() {
+      dragOrder.push(b);
+      renderTargetBlocks();
+    });
+    chip.addEventListener('mouseover', function() { chip.style.background = 'rgba(162,155,254,.4)'; });
+    chip.addEventListener('mouseout', function() { chip.style.background = 'rgba(162,155,254,.2)'; });
+    src.appendChild(chip);
+  });
+}
+
+function renderTargetBlocks() {
+  const zone = document.getElementById('drag-target');
+  if (!zone) return;
+  const hint = document.getElementById('drop-hint');
+  if (hint) hint.style.display = dragOrder.length ? 'none' : 'block';
+  zone.querySelectorAll('.tgt-chip').forEach(function(c) { c.remove(); });
+  dragOrder.forEach(function(b, idx) {
+    const chip = document.createElement('div');
+    chip.className = 'block-chip tgt-chip';
+    chip.style.cssText = 'background:rgba(0,212,255,.15);border:2px solid #00d4ff;color:#00d4ff;cursor:pointer;padding:10px 14px;font-size:13px;border-radius:8px;';
+    chip.innerHTML = '<span style="font-size:10px;opacity:.6;margin-right:5px;">' + (idx+1) + '.</span><code>' + b + '</code>';
+    chip.title = 'Clic para quitar';
+    chip.addEventListener('click', (function(i) { return function() {
+      dragOrder.splice(i, 1);
+      renderSourceBlocks(CHALLENGES[G.world][challengeIndex]);
+      renderTargetBlocks();
+    }; })(idx));
     zone.appendChild(chip);
   });
 }
- 
+
+function shuffle(arr) { return arr.sort(function() { return Math.random() - 0.5; }); }
+function dragStart(e, label) { e.dataTransfer.setData('text/plain', label); }
+function allowDrop(e) { e.preventDefault(); }
+function dropBlock(e) {
+  e.preventDefault();
+  var label = e.dataTransfer.getData('text/plain');
+  if (label) { dragOrder.push(label); renderSourceBlocks(CHALLENGES[G.world][challengeIndex]); renderTargetBlocks(); }
+}
+
 function clearDrop() {
   dragOrder = [];
-  const zone = document.getElementById('drag-target');
-  zone.innerHTML = '<span style="color:var(--muted);font-size:11px;">Arrastra los bloques aquí en orden...</span>';
+  _shuffledBlocks = []; // reshuffle on clear
+  renderSourceBlocks(CHALLENGES[G.world][challengeIndex]);
+  renderTargetBlocks();
+  var result = document.getElementById('drag-result');
+  if (result) result.innerHTML = '';
 }
- 
+
 function checkDrag() {
-  const ch = CHALLENGES[G.world][challengeIndex];
-  const result = document.getElementById('drag-result');
-  if (dragOrder.length < ch.blocks.length) {
-    result.innerHTML = `<span style="color:var(--danger);">⚠️ Faltan ${ch.blocks.length - dragOrder.length} bloque(s).</span>`;
+  var ch = CHALLENGES[G.world][challengeIndex];
+  var result = document.getElementById('drag-result');
+  if (!result) return;
+  if (dragOrder.length === 0) {
+    result.style.background = 'rgba(225,112,85,.15)';
+    result.innerHTML = '<span style="color:var(--danger);">⚠️ Agrega los bloques primero haciendo clic en ellos.</span>';
     return;
   }
-  const correct = ch.orderedLabels;
-  let ok = true;
-  for (let i = 0; i < correct.length; i++) {
-    if (dragOrder[i] !== correct[i]) { ok = false; break; }
+  if (dragOrder.length < ch.orderedLabels.length) {
+    result.style.background = 'rgba(225,112,85,.15)';
+    result.innerHTML = '<span style="color:var(--danger);">⚠️ Faltan ' + (ch.orderedLabels.length - dragOrder.length) + ' bloque(s). Agrega todos.</span>';
+    return;
   }
-  if (ok) {
-    result.innerHTML = `<span style="color:var(--green);">✅ ¡Orden correcto! +${ch.reward} pts</span>`;
-    setTimeout(() => solveChallenge(ch.reward), 1200);
+  var correct = ch.orderedLabels;
+  var firstWrong = -1;
+  for (var i = 0; i < correct.length; i++) {
+    if ((dragOrder[i] || '').trim() !== correct[i].trim()) { firstWrong = i; break; }
+  }
+  if (firstWrong === -1) {
+    result.style.background = 'rgba(78,204,163,.15)';
+    result.innerHTML = '<span style="color:var(--green);font-weight:bold;">✅ ¡Perfecto! +' + ch.reward + ' pts 🎉</span>';
+    document.querySelectorAll('#drag-target .tgt-chip').forEach(function(c) {
+      c.style.borderColor = '#4ecca3'; c.style.background = 'rgba(78,204,163,.2)'; c.style.color = '#4ecca3';
+    });
+    setTimeout(function() { solveChallenge(ch.reward); }, 1400);
   } else {
-    result.innerHTML = `<span style="color:var(--danger);">❌ Orden incorrecto. Vuelve a intentarlo.</span>`;
-    setTimeout(clearDrop, 1000);
+    result.style.background = 'rgba(225,112,85,.15)';
+    result.innerHTML = '<span style="color:var(--danger);">❌ El bloque #' + (firstWrong+1) + ' no es correcto. Inténtalo de nuevo.</span>';
+    var chips = document.querySelectorAll('#drag-target .tgt-chip');
+    if (chips[firstWrong]) {
+      chips[firstWrong].style.borderColor = '#e94560';
+      chips[firstWrong].style.background = 'rgba(233,69,96,.2)';
+      chips[firstWrong].style.color = '#e94560';
+    }
+    setTimeout(function() { clearDrop(); if(result) result.innerHTML = ''; }, 2200);
   }
 }
- 
+
+function closeQuizModal() {
+  document.getElementById('s-quiz').classList.add('hide');
+  challengeOpen = false;
+}
+
 function openQuizModal(ch) {
-  document.getElementById('qz-prof').textContent = ch.prof;
+  // Guard: store challenge reference to avoid stale index
+  const storedCh = ch;
+  document.getElementById('qz-prof').textContent = ch.prof || 'Profesor';
   document.getElementById('qz-q').textContent = ch.q;
   const opts = document.getElementById('qz-opts');
-  opts.innerHTML = ch.opts.map((o,i) => `<button class="opt-btn" onclick="answerQuiz(${i})">${String.fromCharCode(65+i)}) ${o}</button>`).join('');
+  opts.innerHTML = '';
+  (ch.opts || []).forEach(function(optText, i) {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = String.fromCharCode(65 + i) + ')  ' + optText;
+    btn.style.cssText = 'display:block;width:100%;margin:6px 0;padding:14px 18px;text-align:left;font-size:15px;';
+    btn.addEventListener('click', function() { answerQuiz(i, storedCh); });
+    opts.appendChild(btn);
+  });
   document.getElementById('s-quiz').classList.remove('hide');
 }
- 
-function answerQuiz(picked) {
-  const ch = CHALLENGES[G.world][G.challengesDone];
-  const opts = document.querySelectorAll('#qz-opts .opt-btn');
-  opts.forEach((b,i) => {
-    b.onclick = null;
-    if (i === ch.correct) b.classList.add('correct');
-    else if (i === picked && i !== ch.correct) b.classList.add('wrong');
+
+function answerQuiz(picked, ch) {
+  // Disable all buttons immediately
+  const allBtns = document.querySelectorAll('#qz-opts .opt-btn');
+  allBtns.forEach(function(b) { b.style.pointerEvents = 'none'; });
+  // Highlight correct and wrong
+  allBtns.forEach(function(b, i) {
+    if (i === ch.correct) {
+      b.style.borderColor = '#4ecca3';
+      b.style.background = 'rgba(78,204,163,.25)';
+      b.style.color = '#4ecca3';
+    } else if (i === picked && i !== ch.correct) {
+      b.style.borderColor = '#e94560';
+      b.style.background = 'rgba(233,69,96,.2)';
+      b.style.color = '#e94560';
+    }
   });
   if (picked === ch.correct) {
-    setTimeout(() => {
+    notify('✅ ¡Correcto! +' + ch.reward + ' pts', '#4ecca3');
+    setTimeout(function() {
       document.getElementById('s-quiz').classList.add('hide');
       solveChallenge(ch.reward);
-    }, 1200);
+    }, 1300);
   } else {
     G.lives--;
-    notify('❌ Incorrecto. -1 vida', '#e17055');
-    if (G.lives <= 0) { triggerGameOver('Fallaste demasiadas preguntas.'); return; }
-    setTimeout(() => {
+    notify('❌ Incorrecto. -1 vida', '#e94560');
+    updateHUD();
+    if (G.lives <= 0) {
+      setTimeout(function() { triggerGameOver('Fallaste demasiadas preguntas.'); }, 1200);
+      return;
+    }
+    setTimeout(function() {
       document.getElementById('s-quiz').classList.add('hide');
       challengeOpen = false;
-    }, 1500);
+    }, 1600);
   }
 }
- 
+
 function solveChallenge(reward) {
   G.score += reward;
   G.challengesDone++;
@@ -2100,7 +2547,7 @@ function solveChallenge(reward) {
   // From reto 1 onwards, attack is enabled
   G.attackEnabled = true;
   notify(`🎉 Reto ${G.challengesDone}/${WORLDS[G.world].challengeCount} completado! +${reward} pts`, '#4ecca3');
- 
+
   // All 3 challenges done — SUPERPOWER
   if (G.challengesDone >= WORLDS[G.world].challengeCount) {
     G.superpower = true;
@@ -2117,14 +2564,14 @@ function solveChallenge(reward) {
     // gameLoop's checkWorldClear() will call worldComplete when enemies are also 0
   }
 }
- 
+
 function showPowerBanner() {
   const alive = enemies.filter(e => e.alive).length;
   const noEnemies = WORLDS[G.world].enemies === 0;
   const sub = (alive === 0 || noEnemies)
     ? '¡PASANDO AL SIGUIENTE MUNDO!'
     : `¡DERROTA A LOS ${alive} ENEMIGOS RESTANTES!`;
- 
+
   const banner = document.createElement('div');
   banner.style.cssText = `
     position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
@@ -2144,12 +2591,12 @@ function showPowerBanner() {
   setTimeout(() => { banner.style.transform = 'translate(-50%,-50%) scale(0)'; }, 3000);
   setTimeout(() => { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 3500);
 }
- 
+
 function closeCh() {
   document.getElementById('challenge').classList.remove('open');
   challengeOpen = false;
 }
- 
+
 // ─────────────────────────────────────────────
 // WORLD COMPLETE / NEXT
 // ─────────────────────────────────────────────
@@ -2170,7 +2617,7 @@ function worldComplete() {
     show('s-wincomplete');
   }
 }
- 
+
 function nextWorldBtn() {
   hide('s-wincomplete');
   G.world++;
@@ -2189,7 +2636,7 @@ function nextWorldBtn() {
   P.x = 120; P.y = H - 200;
   startLevel();
 }
- 
+
 // ─────────────────────────────────────────────
 // GAME OVER / RETRY
 // ─────────────────────────────────────────────
@@ -2200,7 +2647,7 @@ function triggerGameOver(msg) {
   document.getElementById('go-score').textContent = G.score;
   show('s-over');
 }
- 
+
 function retryWorld() {
   hide('s-over');
   G.lives = 3; G.time = 0;
@@ -2213,7 +2660,7 @@ function retryWorld() {
   P.x = 120; P.y = H - 200;
   startLevel();
 }
- 
+
 // ─────────────────────────────────────────────
 // PAUSE
 // ─────────────────────────────────────────────
@@ -2222,12 +2669,12 @@ function togglePause() {
   G.paused = !G.paused;
   if (G.paused) show('s-pause'); else hide('s-pause');
 }
- 
+
 function resumeGame() {
   G.paused = false;
   hide('s-pause');
 }
- 
+
 // ─────────────────────────────────────────────
 // LEADERBOARD
 // ─────────────────────────────────────────────
@@ -2239,7 +2686,7 @@ function saveScore() {
     localStorage.setItem('fontana_v3', JSON.stringify(scores.slice(0, 100)));
   } catch(e) {}
 }
- 
+
 function checkRank() {
   try {
     const scores = JSON.parse(localStorage.getItem('fontana_v3') || '[]');
@@ -2247,7 +2694,7 @@ function checkRank() {
     document.getElementById('v-rank').textContent = rank > 0 ? `#${rank} en el ranking global` : '';
   } catch(e) {}
 }
- 
+
 function showLB() {
   try {
     const scores = JSON.parse(localStorage.getItem('fontana_v3') || '[]');
@@ -2261,9 +2708,9 @@ function showLB() {
   } catch(e) { document.getElementById('lb-body').innerHTML = '<p>Error cargando scores.</p>'; }
   show('s-lb');
 }
- 
+
 function hideLB() { hide('s-lb'); }
- 
+
 // ─────────────────────────────────────────────
 // HUD UPDATES
 // ─────────────────────────────────────────────
@@ -2298,7 +2745,7 @@ function updateHUD() {
     btnAtk.style.display = 'none';
   }
 }
- 
+
 // ─────────────────────────────────────────────
 // NOTIFICATIONS
 // ─────────────────────────────────────────────
@@ -2308,7 +2755,7 @@ function triggerAttack() {
   keys['x'] = true;
   setTimeout(() => { keys['x'] = false; }, 100);
 }
- 
+
 function notify(msg, color = '#4ecca3') {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -2317,13 +2764,13 @@ function notify(msg, color = '#4ecca3') {
   clearTimeout(notifTimer);
   notifTimer = setTimeout(() => el.classList.remove('show'), 2500);
 }
- 
+
 // ─────────────────────────────────────────────
 // SHOW/HIDE HELPERS
 // ─────────────────────────────────────────────
 function show(id) { document.getElementById(id).classList.remove('hide'); }
 function hide(id) { document.getElementById(id).classList.add('hide'); }
- 
+
 // ─────────────────────────────────────────────
 // MENU / GAME START
 // ─────────────────────────────────────────────
@@ -2332,7 +2779,7 @@ function pickChar(type, el) {
   document.querySelectorAll('.char-card').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
 }
- 
+
 function menuStart() {
   const name = document.getElementById('pname').value.trim();
   if (!name) { notify('¡Escribe tu nombre de héroe!', '#e94560'); return; }
@@ -2344,7 +2791,7 @@ function menuStart() {
   document.getElementById('hud').classList.add('on');
   startLevel();
 }
- 
+
 function startLevel() {
   const world = WORLDS[G.world];
   document.getElementById('wi-badge').textContent = world.badge;
@@ -2355,7 +2802,7 @@ function startLevel() {
   document.getElementById('wi-preview').textContent = world.preview;
   show('s-intro');
 }
- 
+
 function enterWorld() {
   hide('s-intro');
   G.running = true; G.paused = false;
@@ -2365,15 +2812,39 @@ function enterWorld() {
   lastTime = performance.now();
   raf = requestAnimationFrame(gameStep);
 }
- 
+
 // ─────────────────────────────────────────────
 // PREVIEWS ON LOAD
 // ─────────────────────────────────────────────
-drawPreview('kangaroo', 'kangaroo');
+// Draw character previews on load
+window.addEventListener('load', () => {
+  // Draw previews
+  drawPreview('kangaroo', 'kangaroo');
   drawPreview('girl', 'girl');
   drawPreview('boy', 'boy');
- 
-}); // end DOMContentLoaded
+
+  // Bind all buttons via addEventListener (más robusto que onclick en HTML)
+  const bind = (id, fn) => { const el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
+  bind('btn-start-game', menuStart);
+  bind('btn-show-lb', showLB);
+  bind('btn-enter-world', enterWorld);
+  bind('btn-resume', resumeGame);
+  bind('btn-retry', retryWorld);
+  bind('btn-next-world', nextWorldBtn);
+  bind('btn-close-lb', hideLB);
+  bind('btn-attack', triggerAttack);
+  bind('btn-pause', togglePause);
+});
+
+// Global error display so we can see problems
+window.addEventListener('error', (e) => {
+  const div = document.createElement('div');
+  div.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#e94560;color:#fff;padding:12px;font-size:13px;z-index:9999;font-family:monospace;';
+  div.textContent = '⚠️ Error: ' + e.message + ' (línea ' + e.lineno + ')';
+  document.body.appendChild(div);
+  setTimeout(() => div.remove(), 6000);
+});
 </script>
 </body>
 </html>
+
