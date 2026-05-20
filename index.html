@@ -607,7 +607,7 @@ const G = {
   world:0, score:0, lives:3,
   time:0, running:false, paused:false,
   challengesDone:0, worldKills:0,
-  attackEnabled:false, bossHP:100, superpower:false,
+  attackEnabled:false, bossHP:100, superpower:false, worldCleared:false,
   challengesPassed:0
 };
  
@@ -1617,6 +1617,9 @@ function gameStep(ts) {
   // Particles
   updateParticles();
  
+  // Check world clear every frame
+  checkWorldClear();
+ 
   // DRAW
   drawWorld();
   drawPlatforms();
@@ -1696,18 +1699,26 @@ function drawPlayerSprite() {
 }
  
 function drawAttackIndicator() {
-  if (!G.attackEnabled) {
-    gx.fillStyle = 'rgba(200,0,0,.15)';
-    gx.fillRect(0, H - 100, W, 30);
-    gx.fillStyle = 'rgba(200,0,0,.6)';
-    gx.font = '11px sans-serif'; gx.textAlign = 'center';
-    gx.fillText('⚠️ Completa retos para activar el ataque (tecla X / Z)', W/2, H - 80);
+  const t = Date.now() / 400;
+  if (G.superpower) {
+    // Pulsing golden bar
+    gx.fillStyle = `rgba(240,192,112,${0.15 + Math.sin(t)*0.08})`;
+    gx.fillRect(0, H - 108, W, 36);
+    gx.fillStyle = '#f0c070';
+    gx.font = 'bold 13px sans-serif'; gx.textAlign = 'center';
+    gx.fillText('⚡ SUPERPODER ACTIVO — Presiona X o Z para ataque triple', W/2, H - 86);
+  } else if (G.attackEnabled) {
+    gx.fillStyle = 'rgba(78,204,163,.1)';
+    gx.fillRect(0, H - 108, W, 36);
+    gx.fillStyle = '#4ecca3';
+    gx.font = '12px sans-serif'; gx.textAlign = 'center';
+    gx.fillText('✅ Ataque desbloqueado — Presiona X o Z para atacar', W/2, H - 86);
   } else {
-    gx.fillStyle = 'rgba(0,200,100,.1)';
-    gx.fillRect(0, H - 100, W, 30);
-    gx.fillStyle = 'rgba(78,204,163,.7)';
-    gx.font = '11px sans-serif'; gx.textAlign = 'center';
-    gx.fillText('✅ Ataque activado — X / Z para atacar', W/2, H - 80);
+    gx.fillStyle = 'rgba(200,0,0,.1)';
+    gx.fillRect(0, H - 108, W, 36);
+    gx.fillStyle = '#e94560';
+    gx.font = '12px sans-serif'; gx.textAlign = 'center';
+    gx.fillText('🔒 Acércate al bloque ? para resolver el reto y desbloquear el ataque', W/2, H - 86);
   }
 }
  
@@ -1828,11 +1839,13 @@ function updateBossBar() {
 }
  
 function checkWorldClear() {
+  if (G.worldCleared) return; // ya detectado, no repetir
   const alive = enemies.filter(e => e.alive).length;
-  const challengesDone = G.challengesDone >= WORLDS[G.world].challengeCount;
-  const noEnemiesNeeded = WORLDS[G.world].enemies === 0;
-  if (challengesDone && (alive === 0 || noEnemiesNeeded)) {
-    setTimeout(worldComplete, 800);
+  const retosOk = G.challengesDone >= WORLDS[G.world].challengeCount;
+  const enemigosOk = alive === 0 || WORLDS[G.world].enemies === 0;
+  if (retosOk && enemigosOk) {
+    G.worldCleared = true;
+    setTimeout(worldComplete, 600);
   }
 }
  
@@ -2066,49 +2079,54 @@ function solveChallenge(reward) {
   G.challengesPassed++;
   challengeOpen = false;
   closeCh();
-  // Update block state
+  // Mark block solved
   if (challengeBlocks[G.challengesDone - 1]) challengeBlocks[G.challengesDone - 1].solved = true;
-  // Unlock attack when at least 1 challenge done
-  G.attackEnabled = G.challengesDone >= 1;
+  // From reto 1 onwards, attack is enabled
+  G.attackEnabled = true;
   notify(`🎉 Reto ${G.challengesDone}/${WORLDS[G.world].challengeCount} completado! +${reward} pts`, '#4ecca3');
-  // All challenges done — SUPERPOWER UNLOCKED
+ 
+  // All 3 challenges done — SUPERPOWER
   if (G.challengesDone >= WORLDS[G.world].challengeCount) {
     G.superpower = true;
-    // Giant particle explosion
-    for (let i = 0; i < 5; i++) {
+    G.lives = 3; // full heal
+    // Particle burst
+    for (let i = 0; i < 6; i++) {
       setTimeout(() => {
-        spawnParticles(P.x + P.w/2, P.y + P.h/2, '#f0c070', 20);
+        spawnParticles(P.x + P.w/2, P.y + P.h/2, '#f0c070', 25);
         spawnParticles(P.x + P.w/2, P.y + P.h/2, '#00d4ff', 20);
-        spawnParticles(P.x + P.w/2, P.y + P.h/2, '#4ecca3', 15);
-      }, i * 150);
+        spawnParticles(P.x + P.w/2, P.y + P.h/2, '#4ecca3', 20);
+      }, i * 120);
     }
-    // Full heal
-    G.lives = 3;
-    // Show power-up banner
     showPowerBanner();
-    notify('⚡ ¡SUPERPODER ACTIVADO! Ataque máximo + Vidas restauradas', '#f0c070');
-    if (enemies.filter(e => e.alive).length === 0) setTimeout(worldComplete, 1200);
+    // gameLoop's checkWorldClear() will call worldComplete when enemies are also 0
   }
 }
  
 function showPowerBanner() {
-  // Create a temporary DOM banner
+  const alive = enemies.filter(e => e.alive).length;
+  const noEnemies = WORLDS[G.world].enemies === 0;
+  const sub = (alive === 0 || noEnemies)
+    ? '¡PASANDO AL SIGUIENTE MUNDO!'
+    : `¡DERROTA A LOS ${alive} ENEMIGOS RESTANTES!`;
+ 
   const banner = document.createElement('div');
-  banner.id = 'power-banner';
   banner.style.cssText = `
     position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
     background:linear-gradient(135deg,#f0c070,#e94560);
-    color:#000; padding:24px 48px; border-radius:16px;
-    font-size:clamp(20px,3vw,36px); font-weight:900; letter-spacing:3px;
+    color:#000; padding:28px 52px; border-radius:18px;
+    font-size:clamp(18px,2.8vw,34px); font-weight:900; letter-spacing:2px;
     text-align:center; z-index:300; pointer-events:none;
-    box-shadow:0 0 60px rgba(240,192,112,.8);
+    box-shadow:0 0 80px rgba(240,192,112,.9);
     transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+    line-height:1.3;
   `;
-  banner.innerHTML = '⚡ ¡SUPERPODER!<br><span style="font-size:.5em;letter-spacing:2px;">¡TODOS LOS RETOS RESUELTOS!</span>';
+  banner.innerHTML = `⚡ ¡SUPERPODER ACTIVADO!<br>
+    <span style="font-size:.55em;letter-spacing:1px;">${sub}</span><br>
+    <span style="font-size:.45em;opacity:.85;">Ataque triple · Vidas restauradas · X para atacar</span>`;
   document.body.appendChild(banner);
-  setTimeout(() => { banner.style.transform = 'translate(-50%,-50%) scale(1)'; }, 50);
-  setTimeout(() => { banner.style.transform = 'translate(-50%,-50%) scale(0)'; }, 2200);
-  setTimeout(() => { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 2700);
+  setTimeout(() => { banner.style.transform = 'translate(-50%,-50%) scale(1)'; }, 30);
+  setTimeout(() => { banner.style.transform = 'translate(-50%,-50%) scale(0)'; }, 3000);
+  setTimeout(() => { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 3500);
 }
  
 function closeCh() {
@@ -2144,6 +2162,7 @@ function nextWorldBtn() {
   G.worldKills = 0;
   G.attackEnabled = false;
   G.superpower = false;
+  G.worldCleared = false;
   G.time = 0;
   G.bossHP = 100;
   document.getElementById('boss-bar-wrap').classList.remove('on');
@@ -2169,7 +2188,7 @@ function triggerGameOver(msg) {
 function retryWorld() {
   hide('s-over');
   G.lives = 3; G.time = 0;
-  G.challengesDone = 0; G.attackEnabled = false; G.superpower = false; G.worldKills = 0;
+  G.challengesDone = 0; G.attackEnabled = false; G.superpower = false; G.worldCleared = false; G.worldKills = 0;
   G.bossHP = 100;
   buildPlatforms(G.world);
   buildChallengeBlocks(G.world);
